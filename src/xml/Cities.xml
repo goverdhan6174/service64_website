@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row id='5f72e87dab13f10017d921f7'>
+    <locations>
+      <label>Bagerhat Sadar</label>
+    </locations>
+    <locations>
+      <label>Chitalmari</label>
+    </locations>
+    <locations>
+      <label>Fakirhat</label>
+    </locations>
+    <locations>
+      <label>Kachua</label>
+    </locations>
+    <locations>
+      <label>Mollahat</label>
+    </locations>
+    <locations>
+      <label>Mongla</label>
+    </locations>
+    <locations>
+      <label>Morrelganj</label>
+    </locations>
+    <locations>
+      <label>Rampal</label>
+    </locations>
+    <locations>
+      <label>Sharankhola</label>
+    </locations>
+    <label>Bagerhat</label>
+
+  </row>
+  <row id='6016ebf1dca8a600173d4423'>
+    <locations/>
+    <label>Bandarban</label>
+  
+  </row>
+  <row id='6016e979dca8a600173d440a'>
+    <locations/>
+    <label>Barguna</label>
+  
+  </row>
+  <row id='6016e96bdca8a600173d4409'>
+    <locations/>
+    <label>Barisal</label>
+  
+  </row>
+  <row id='6016e987dca8a600173d440b'>
+    <locations/>
+    <label>Bhola</label>
+  
+  </row>
+  <row id='6016ed62dca8a600173d442c'>
+    <locations/>
+    <label>Bogura</label>
+  
+  </row>
+  <row id='6016eb63dca8a600173d441b'>
+    <locations/>
+    <label>Brahmanbaria</label>
+  
+  </row>
+  <row id='6016eb7fdca8a600173d441d'>
+    <locations/>
+    <label>Chandpur</label>
+  
+  </row>
+  <row id='6016ed71dca8a600173d442d'>
+    <locations/>
+    <label>Chapainawabganj</label>
+  
+  </row>
+  <row id='6006df4f064a920017992798'>
+    <locations>
+      <label>Agrabad</label>
+    </locations>
+    <locations>
+      <label>Anderkilla</label>
+    </locations>
+    <locations>
+      <label>Anwara</label>
+    </locations>
+    <locations>
+      <label>Baizid</label>
+    </locations>
+    <locations>
+      <label>Bakoliya</label>
+    </locations>
+    <locations>
+      <label>Bandar</label>
+    </locations>
+    <locations>
+      <label>BoalKhali</label>
+    </locations>
+    <locations>
+      <label>CDA Avenue</label>
+    </locations>
+    <locations>
+      <label>Chandgaon</label>
+    </locations>
+    <locations>
+      <label>Chawkbazar</label>
+    </locations>
+    <locations>
+      <label>Cornelhat</label>
+    </locations>
+    <locations>
+      <label>Double Mooring</label>
+    </locations>
+    <locations>
+      <label>Halishahar</label>
+    </locations>
+    <locations>
+      <label>Hathazari</label>
+    </locations>
+    <locations>
+      <label>Jamalkhan</label>
+    </locations>
+    <locations>
+      <label>Khulshi</label>
+    </locations>
+    <locations>
+      <label>Kotwali</label>
+    </locations>
+    <locations>
+      <label>Lalkhan Bazar</label>
+    </locations>
+    <locations>
+      <label>Muradpur</label>
+    </locations>
+    <locations>
+      <label>Nasirabad</label>
+    </locations>
+    <locations>
+      <label>Paharali</label>
+    </locations>
+    <locations>
+      <label>Panchlaish</label>
+    </locations>
+    <locations>
+      <label>Patenga</label>
+    </locations>
+    <locations>
+      <label>Sholashahar</label>
+    </locations>
+    <label>Chattogram</label>
+
+  </row>
+  <row id='6010042362316600172adac9'>
+    <locations/>
+    <label>Chuadanga</label>
+
+  </row>
+  <row id='6016eb73dca8a600173d441c'>
+    <locations></locations>
+    <label>Comilla</label>
+  
+  </row>
+  <row id='6016ec19dca8a600173d4424'>
+    <locations/>
+    <label>Cox&#x27;s Bazar</label>
+  
+  </row>
+  <row id='6016f0b0dca8a600173d443d'>
+    <locations/>
+    <label>Dhaka</label>
+  
+  </row>
+  <row id='6016ee0fdca8a600173d4432'>
+    <locations/>
+    <label>Dinajpur</label>
+  
+  </row>
+  <row id='6016ea6edca8a600173d4416'>
+    <locations/>
+    <label>Faridpur</label>
+  
+  </row>
+  <row id='6016ebb7dca8a600173d4420'>
+    <locations/>
+    <label>Feni</label>
+  
+  </row>
+  <row id='6016ee2ddca8a600173d4435'>
+    <locations/>
+    <label>Gaibandha</label>
+  
+  </row>
+  <row id='6016ea1edca8a600173d440f'>
+    <locations/>
+    <label>Gazipur</label>
+  
+  </row>
+  <row id='6016ea77dca8a600173d4417'>
+    <locations/>
+    <label>Gopalganj 	</label>
+  
+  </row>
+  <row id='6016ecc4dca8a600173d4428'>
+    <locations/>
+    <label>Habiganj</label>
+  
+  </row>
+  <row id='6016ee9bdca8a600173d443b'>
+    <locations/>
+    <label>Jamalpur</label>
+  
+  </row>
+  <row id='5fa43e8ff0a8ef00176a4b24'>
+    <locations>
+      <label>Monihar</label>
+    </locations>
+    <label>Jessore</label>
+
+  </row>
+  <row id='6016e996dca8a600173d440c'>
+    <locations/>
+    <label>Jhalokati</label>
+  
+  </row>
+  <row id='6010046962316600172adaca'>
+    <locations/>
+    <label>Jhenaidah</label>
+
+  </row>
+  <row id='6016ed79dca8a600173d442e'>
+    <locations/>
+    <label>Joypurhat</label>
+  
+  </row>
+  <row id='6016ebccdca8a600173d4421'>
+    <locations/>
+    <label>Khagrachhari</label>
+  
+  </row>
+  <row id='5f720f550a585f0017e05b40'>
+    <locations>
+      <label>Boyra</label>
+    </locations>
+    <locations>
+      <label>Daulatpur</label>
+    </locations>
+    <locations>
+      <label>Gollamari</label>
+    </locations>
+    <locations>
+      <label>Khalishpur</label>
+    </locations>
+    <locations>
+      <label>Moylapota</label>
+    </locations>
+    <locations>
+      <label>Rupsha</label>
+    </locations>
+    <locations>
+      <label>Sonadanga</label>
+    </locations>
+    <locations>
+      <label>Zero point</label>
+    </locations>
+    <label>Khulna</label>
+
+  </row>
+  <row id='6016ea2cdca8a600173d4410'>
+    <locations/>
+    <label>Kishoreganj</label>
+  
+  </row>
+  <row id='6016ee18dca8a600173d4433'>
+    <locations/>
+    <label>Kurigram</label>
+  
+  </row>
+  <row id='6010047762316600172adacb'>
+    <locations/>
+    <label>Kushtia</label>
+
+  </row>
+  <row id='6016eb8edca8a600173d441e'>
+    <locations/>
+    <label>Lakshmipur</label>
+  
+  </row>
+  <row id='6016ee49dca8a600173d4438'>
+    <locations/>
+    <label>Lalmonirhat</label>
+  
+  </row>
+  <row id='6016ea86dca8a600173d4418'>
+    <locations/>
+    <label>Madaripur</label>
+  
+  </row>
+  <row id='6010048762316600172adacc'>
+    <locations/>
+    <label>Magura</label>
+
+  </row>
+  <row id='6016ebabdca8a600173d441f'>
+    <locations/>
+    <label>Maijdee</label>
+  
+  </row>
+  <row id='6016ea37dca8a600173d4411'>
+    <locations/>
+    <label>Manikganj</label>
+  
+  </row>
+  <row id='601004a962316600172adacd'>
+    <locations/>
+    <label>Meherpur</label>
+
+  </row>
+  <row id='6016ecb2dca8a600173d4427'>
+    <locations/>
+    <label>Moulvibazar</label>
+  
+  </row>
+  <row id='6016ea41dca8a600173d4412'>
+    <locations/>
+    <label>Munshiganj</label>
+  
+  </row>
+  <row id='6016ee7bdca8a600173d4439'>
+    <locations/>
+    <label>Mymensingh</label>
+  
+  </row>
+  <row id='6016ed81dca8a600173d442f'>
+    <locations/>
+    <label>Naogaon</label>
+  
+  </row>
+  <row id='601004b662316600172adace'>
+    <locations/>
+    <label>Narail</label>
+  
+  </row>
+  <row id='6016ea4bdca8a600173d4413'>
+    <locations/>
+    <label>Narayanganj</label>
+  
+  </row>
+  <row id='6016ea57dca8a600173d4414'>
+    <locations/>
+    <label>Narsingdi</label>
+  
+  </row>
+  <row id='6016ed50dca8a600173d442a'>
+    <locations/>
+    <label>Natore</label>
+  
+  </row>
+  <row id='6016ee89dca8a600173d443a'>
+    <locations/>
+    <label>Netrokona</label>
+  
+  </row>
+  <row id='6016ee24dca8a600173d4434'>
+    <locations/>
+    <label>Nilphamari</label>
+  
+  </row>
+  <row id='6016ed59dca8a600173d442b'>
+    <locations/>
+    <label>Pabna</label>
+  
+  </row>
+  <row id='6016ee40dca8a600173d4437'>
+    <locations/>
+    <label>Panchagarh</label>
+  
+  </row>
+  <row id='6016e9a3dca8a600173d440d'>
+    <locations/>
+    <label>Patuakhali</label>
+  
+  </row>
+  <row id='6016e9badca8a600173d440e'>
+    <locations/>
+    <label>Pirojpur</label>
+  
+  </row>
+  <row id='6016ea94dca8a600173d4419'>
+    <locations/>
+    <label>Rajbari</label>
+  
+  </row>
+  <row id='6016ed49dca8a600173d4429'>
+    <locations/>
+    <label>Rajshahi</label>
+  
+  </row>
+  <row id='6016ebd7dca8a600173d4422'>
+    <locations/>
+    <label>Rangamati</label>
+  
+  </row>
+  <row id='6016edd6dca8a600173d4431'>
+    <locations></locations>
+    <label>Rangpur</label>
+  
+  </row>
+  <row id='5f744265eeebc000173ad24f'>
+    <locations>
+      <label>Kolarowa</label>
+    </locations>
+    <locations>
+      <label>Sador</label>
+    </locations>
+    <label>Satkhira</label>
+
+  </row>
+  <row id='6016eaa5dca8a600173d441a'>
+    <locations/>
+    <label>Shariatpur</label>
+  
+  </row>
+  <row id='6016eea4dca8a600173d443c'>
+    <locations/>
+    <label>Sherpur</label>
+  
+  </row>
+  <row id='6016ed88dca8a600173d4430'>
+    <locations/>
+    <label>Sirajganj</label>
+  
+  </row>
+  <row id='6016ec5adca8a600173d4426'>
+    <locations/>
+    <label>Sunamganj</label>
+  
+  </row>
+  <row id='6016ec4ddca8a600173d4425'>
+    <locations/>
+    <label>Sylhet</label>
+  
+  </row>
+  <row id='6016ea62dca8a600173d4415'>
+    <locations/>
+    <label>Tangail</label>
+  
+  </row>
+  <row id='6016ee36dca8a600173d4436'>
+    <locations/>
+    <label>Thakurgaon</label>
+  
+  </row>
+</root>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row id='5fd361070757dd00172bb17d'>
+    <label>AC Repair</label>
+  </row>
+  <row id='5fcbd49aef0fd40017c2ef6f'>
+    <label>Ambulance</label>
+  </row>
+  <row id='5fba86db62e68000172ff691'>
+    <label>Caretaker</label>
+  </row>
+  <row id='5fba871d62e68000172ff693'>
+    <label>Carpenter</label>
+  </row>
+  <row id='5fba869e62e68000172ff68f'>
+    <label>Chef</label>
+  </row>
+  <row id='5f74421feeebc000173ad24e'>
+    <label>Computer repair</label>
+  </row>
+  <row id='5fba86b162e68000172ff690'>
+    <label>Decorator</label>
+  </row>
+  <row id='5f72101d0a585f0017e05b42'>
+    <label>Electricity</label>
+  </row>
+  <row id='5f96f1c49e116700179ef270'>
+    <label>Electronic Repair</label>
+  </row>
+  <row id='600ee31ea57876001741ea1c'>
+    <label>Fire Service</label>
+  </row>
+  <row id='5fd361160757dd00172bb17e'>
+    <label>Fridge Repair</label>
+  </row>
+  <row id='5f96f1929e116700179ef26f'>
+    <label>Gas Mechanic</label>
+  </row>
+  <row id='5fda3b4718a9520017c85684'>
+    <label>Home Shifting</label>
+  </row>
+  <row id='5f72d41bab13f10017d921f5'>
+    <label>Mobile Repair</label>
+  </row>
+  <row id='5fba876b62e68000172ff694'>
+    <label>Painter</label>
+  </row>
+  <row id='5fcbd4cbef0fd40017c2ef70'>
+    <label>Plumbing</label>
+  </row>
+  <row id='6011a2eabf9e9e00172266d8'>
+    <label>Pump Mechanic</label>
+  </row>
+  <row id='5fba86f362e68000172ff692'>
+    <label>Rent a car</label>
+  </row>
+  <row id='6018158fb6d4e00017bd304e'>
+    <label>Thai Glass Mistri</label>
+  </row>
+  <row id='6016c974b19ccd00173acdb7'>
+    <label>Tiles Mistri</label>
+  </row>
+  <row id='6011a4d7bf9e9e00172266da'>
+    <label>Water Tank Cleaner</label>
+  </row>
+</root>
