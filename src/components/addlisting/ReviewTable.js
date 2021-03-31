@@ -92,7 +92,7 @@ export default function ReviewTable() {
               boxShadow: "0px 1px 5px -3px",
             }}
           >
-            <h2>Rating</h2>
+            <h2>Reviews</h2>
           </div>
           <div className="container">
             {reviews.reviews.length > 0 && (
@@ -114,22 +114,17 @@ export default function ReviewTable() {
                 </div>
               </div>
             )}
-            {!reviews.reviews.length && (
-              <h2 className="bold py-3">
-                <small>No Reviews</small>
-              </h2>
-            )}
-            <hr />
-            <Reviews
-              sellerId={reviews.userId}
-              reviews={reviews.reviews}
-              currentUser={currentUser}
-              setReviews={setReviews}
-              setRating={setRating}
-            />
           </div>
         </div>
       </div>
+      {!reviews.reviews.length && <h4 className="bold py-3">No Reviews</h4>}
+      <Reviews
+        sellerId={reviews.userId}
+        reviews={reviews.reviews}
+        currentUser={currentUser}
+        setReviews={setReviews}
+        setRating={setRating}
+      />
     </div>
   );
 }
@@ -145,25 +140,6 @@ function RatingAverage({ rating, totalStars }) {
       <div style={{ maxWidth: "350px" }}>
         <ReviewStarRow fullWidth={true} stars={stars} totalStars={totalStars} />
       </div>
-    </div>
-  );
-}
-
-function ReviewBreakdownStar({ heading, percent = 0, totalStars = 5 }) {
-  const stars = (percent * totalStars) / 100;
-  return (
-    <div
-      className="col-lg-4 col-md-6 col-sm-12 my-2"
-      style={{
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}
-    >
-      <h2>
-        <small> {heading}</small>
-      </h2>
-      <ReviewStarRow stars={stars} totalStars={totalStars} />
     </div>
   );
 }
@@ -198,6 +174,25 @@ function ReviewBreakdown({ userReview, totalStars = 5 }) {
         />
         {/* <ReviewBreakdownStar heading={"Seller level in the field"} /> */}
       </div>
+    </div>
+  );
+}
+
+function ReviewBreakdownStar({ heading, percent = 0, totalStars = 5 }) {
+  const stars = (percent * totalStars) / 100;
+  return (
+    <div
+      className="col-lg-4 col-md-6 col-sm-12 my-2"
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      <h2>
+        <small> {heading}</small>
+      </h2>
+      <ReviewStarRow stars={stars} totalStars={totalStars} fullWidth={true} />
     </div>
   );
 }
@@ -251,7 +246,7 @@ function ReviewBreakdownBar({ label, totalReviews, noOfReviews }) {
           <div
             className="progress-bar progress-bar-danger"
             role="progressbar"
-            style={{ width: `${percentage}%` }}
+            style={{ width: `${percentage}%`, backgroundColor: "#63c5da" }}
           >
             <span className="sr-only">
               {`${percentage}%`} Complete (danger)
@@ -274,18 +269,16 @@ function Reviews({
 }) {
   let usersReview = reviews
     .map((rev) => (
-      <React.Fragment key={rev.reviewer_id}>
-        <hr />
-        <UserReview review={rev} totalStars={totalStars} />
-        <hr />
-      </React.Fragment>
+      <UserReview key={rev.reviewer_id} review={rev} totalStars={totalStars} />
     ))
     .reverse();
   return (
     <>
+      {usersReview}
+
       {currentUser && (
         <div className="review-block">
-          <h4 className="my-3">Share your experience</h4>
+          {/* <h4 className="my-3">Share your experience</h4> */}
           <AddReview
             sellerId={sellerId}
             currentUser={currentUser}
@@ -295,7 +288,6 @@ function Reviews({
           />
         </div>
       )}
-      {usersReview}
     </>
   );
 }
@@ -323,23 +315,28 @@ function UserReview({ review, totalStars }) {
     setStars(ratings * totalStars);
   }, [review, stars]);
   return (
-    <div className="row col-lg-12 col-md-12">
-      <div className="col-lg-2 col-md-2 col-sm-3 col-xs-4 center-col">
-        <img src={review.image_uri} className="img-rounded  review-img" />
+    <div className="row col-lg-12 col-md-12 user-review-container">
+      <div className="col-lg-1 col-md-2 col-sm-2 col-xs-3 center-col review-img-container">
+        <img src={review.image_uri} className="img-rounded review-img" />
       </div>
-      <div className="col-lg-10 col-md-10 col-sm-9 col-xs-8">
+      <div className="col-lg-11 col-md-10 col-sm-10 col-xs-9">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             <div className="review-block-name">
               <a href="#">{review.reviewer_name}</a>
             </div>
-            <div className="review-block-date">{date.current}</div>
-          </div>
-          <div
-            className="review-block-rate center"
-            style={{ maxWidth: "200px" }}
-          >
-            <ReviewStarRow stars={stars} totalStars={totalStars} />
+            {/* <div className="review-block-date">{date.current}</div> */}
+            <div
+              className="review-block-rate"
+              style={{ maxWidth: "250px", marginLeft: "-7px" }}
+            >
+              <ReviewStarRow
+                stars={stars}
+                totalStars={totalStars}
+                size={20}
+                fullWidth={true}
+              />
+            </div>
           </div>
         </div>
         <div className="review-block-description">{review.description}</div>
@@ -512,8 +509,8 @@ function AddReview({
   };
 
   return (
-    <div className="row col-lg-12">
-      <div className="col-lg-2 center-col">
+    <div className="col-lg-12">
+      {/* <div className="col-lg-2 center-col">
         <img
           src={currentUser.seller_img}
           className="img-rounded review-img img-hide"
@@ -521,43 +518,51 @@ function AddReview({
         <div className="review-block-name">
           <a href="#">{currentUser.fullname}</a>
         </div>
-      </div>
-      <div className="col-lg-10">
+      </div> */}
+      <div className="col-lg-12">
         <form onSubmit={handleSubmit}>
-          <AddReviewStars
-            heading={"Seller communication level"}
-            stars={commStar}
-            clickHandler={(e) => {
-              let newStars = +e.target?.value;
-              setCommStar((prev) => newStars);
+          <div
+            className="row"
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              margin: 0,
             }}
-          />
-          <AddReviewStars
-            heading={"Recommend to a friend"}
-            stars={recomStar}
-            clickHandler={(e) => {
-              let newStars = +e.target?.value;
-              setRecomStar((prev) => newStars);
-            }}
-          />
-          <AddReviewStars
-            heading={"Service as described"}
-            stars={experStar}
-            clickHandler={(e) => {
-              let newStars = +e.target?.value;
-              setExperStar((prev) => newStars);
-            }}
-          />
-          <AddReviewStars
-            heading={"Seller behaviour"}
-            stars={behaStar}
-            clickHandler={(e) => {
-              let newStars = +e.target?.value;
-              setBehaStar((prev) => newStars);
-            }}
-          />
-          {/* <AddReviewStars heading={"Seller level in the field"} />  */}
-
+          >
+            <AddReviewStars
+              heading={"Communication"}
+              stars={commStar}
+              clickHandler={(e) => {
+                let newStars = +e.target?.value;
+                setCommStar((prev) => newStars);
+              }}
+            />
+            <AddReviewStars
+              heading={"Recommend"}
+              stars={recomStar}
+              clickHandler={(e) => {
+                let newStars = +e.target?.value;
+                setRecomStar((prev) => newStars);
+              }}
+            />
+            <AddReviewStars
+              heading={"Service"}
+              stars={experStar}
+              clickHandler={(e) => {
+                let newStars = +e.target?.value;
+                setExperStar((prev) => newStars);
+              }}
+            />
+            <AddReviewStars
+              heading={"Behaviour"}
+              stars={behaStar}
+              clickHandler={(e) => {
+                let newStars = +e.target?.value;
+                setBehaStar((prev) => newStars);
+              }}
+            />
+            {/* <AddReviewStars heading={"Seller level in the field"} />  */}
+          </div>
           {/* <div className="form-group">
             <input
               type="text"
@@ -572,7 +577,7 @@ function AddReview({
               className="form-control"
               id="reviewDescription"
               placeholder="Enter brief description about your experience with the seller"
-              col={9}
+              rows={5}
               value={reviewDesc}
               onChange={handleChange}
             />
@@ -595,10 +600,14 @@ function AddReview({
           )}
           <button
             type="submit"
-            className="btn btn-primary"
-            style={{ width: "100%" }}
+            className="btn"
+            style={{
+              // width: "100%",
+              backgroundColor: "#63c5da",
+              color: "whitesmoke",
+            }}
           >
-            Add Review
+            Post Review
           </button>
         </form>
       </div>
@@ -614,15 +623,46 @@ function AddReviewStars({
 }) {
   return (
     <div
+      className="form-group col-lg-3 col-md-4 col-sm-6 my-4"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        textAlign: "center",
+        color: "#444",
+      }}
+    >
+      <h4>
+        <small> {heading}</small>
+      </h4>
+      {/* <div className="review-block-rate" style={{ maxWidth: "200px" }}> */}
+      <ReviewStarRow
+        stars={stars}
+        clickHandler={clickHandler}
+        totalStars={totalStars}
+        fullWidth={true}
+      />
+      {/* </div> */}
+    </div>
+  );
+}
+
+function AddReviewStars2({
+  heading,
+  stars,
+  clickHandler = null,
+  totalStars = 5,
+}) {
+  return (
+    <div
       className="row form-group"
       style={{
         justifyContent: "space-between",
         justifyItems: "center",
       }}
     >
-      <h2>
-        <small> {heading}</small>
-      </h2>
+      <h5>{heading}</h5>
       <div className="review-block-rate" style={{ maxWidth: "200px" }}>
         <ReviewStarRow
           stars={stars}
@@ -639,6 +679,7 @@ function ReviewStarRow({
   stars = 0,
   totalStars = 5,
   clickHandler = null,
+  size = 25,
 }) {
   let [starsArray, setStarsArray] = React.useState([]);
 
@@ -652,6 +693,7 @@ function ReviewStarRow({
           key={newStarArray.length + 1}
           type="full"
           clickHandler={clickHandler}
+          size={size}
         />
       );
     }
@@ -664,6 +706,7 @@ function ReviewStarRow({
           key={newStarArray.length + 1}
           type={halfStar === 0 ? "outline" : "half"}
           clickHandler={clickHandler}
+          size={size}
         />
       );
     }
@@ -677,6 +720,7 @@ function ReviewStarRow({
             key={newStarArray.length + 1}
             type="outline"
             clickHandler={clickHandler}
+            size={size}
           />
         );
       }
@@ -689,9 +733,9 @@ function ReviewStarRow({
     <div
       className="row"
       style={{
-        maxWidth: fullWidth ? "100%" : "250px",
+        maxWidth: fullWidth ? "100%" : "150px",
         justifyContent: "space-around",
-        margin: "0 auto",
+        margin: fullWidth ? "0 auto" : " 0 -15px",
       }}
     >
       {starsArray}
@@ -699,30 +743,40 @@ function ReviewStarRow({
   );
 }
 
-function ReviewStar({ value = 0, clickHandler = null, type = "outline" }) {
+function ReviewStar({
+  value = 0,
+  clickHandler = null,
+  type = "outline",
+  size = 25,
+}) {
   return (
     <button
       type="button"
       className="btn btn-default btn-sm"
-      style={{ width: "15%" }}
+      style={{ width: "15%", padding: "0.05rem" }}
       value={+value}
       onClick={clickHandler}
     >
       {type === "full" && (
-        <IoMdStar style={{ pointerEvents: "none" }} size={25} color="#007bff" />
+        <IoMdStar
+          style={{ pointerEvents: "none" }}
+          size={size}
+          // color="#007bff"
+          color="#63c5da"
+        />
       )}
       {type === "half" && (
         <IoMdStarHalf
           style={{ pointerEvents: "none" }}
-          size={25}
-          color="#007bff"
+          size={size}
+          color="#63c5da"
         />
       )}
       {type === "outline" && (
         <IoMdStarOutline
           style={{ pointerEvents: "none" }}
-          size={25}
-          color="#007bff"
+          size={size}
+          color="#63c5da"
         />
       )}
     </button>
