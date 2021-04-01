@@ -2,9 +2,7 @@ import React from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 import { add_review, get_reviews } from "../../store/action";
 
-export default function ReviewTable() {
-  const totalStars = 5;
-
+export default function ReviewTable({ getReview, totalStars = 5 }) {
   const [currentUser, setCurrentUser] = React.useState();
   const [reviews, setReviews] = React.useState({
     userId: "",
@@ -62,61 +60,34 @@ export default function ReviewTable() {
         setReviews((pr) => {
           return { ...pr, ...reviewsCollection };
         });
-        if (reviewsCollection)
+        if (reviewsCollection) {
+          let avg_rating =
+            (reviewsCollection.behaviour +
+              reviewsCollection.communication +
+              reviewsCollection.expertise +
+              reviewsCollection.recommendation) /
+            4;
+          let star_reviews = {
+            behaviour: reviewsCollection.behaviour,
+            communication: reviewsCollection.communication,
+            expertise: reviewsCollection.expertise,
+            recommendation: reviewsCollection.recommendation,
+          };
+          let no_of_reviews = reviewsCollection.reviewBars;
           setRating({
-            avg_rating:
-              (reviewsCollection.behaviour +
-                reviewsCollection.communication +
-                reviewsCollection.expertise +
-                reviewsCollection.recommendation) /
-              4,
-            star_reviews: {
-              behaviour: reviewsCollection.behaviour,
-              communication: reviewsCollection.communication,
-              expertise: reviewsCollection.expertise,
-              recommendation: reviewsCollection.recommendation,
-            },
-            no_of_reviews: reviewsCollection.reviewBars,
+            avg_rating,
+            star_reviews,
+            no_of_reviews,
           });
+          getReview(avg_rating, star_reviews);
+        }
       }
     }
     fetchData();
   }, []);
 
   return (
-    <div className="col-lg-11">
-      <div className="listing-description ">
-        <div className="section-heading profile-description mt-4 shadow-sm mb-2 bg-light rounded">
-          <div
-            style={{
-              boxShadow: "0px 1px 5px -3px",
-            }}
-          >
-            <h2>Reviews</h2>
-          </div>
-          <div className="container">
-            {reviews.reviews.length > 0 && (
-              <div className="row pt-4">
-                <div className="col-lg-4">
-                  <RatingAverage
-                    rating={rating.avg_rating}
-                    totalStars={totalStars}
-                  />
-                </div>
-                <div className="col-lg-8">
-                  <RatingBreakdown
-                    noOfReviews={rating.no_of_reviews}
-                    totalNoOfReviews={reviews.reviews.length}
-                  />
-                </div>
-                <div className="col-lg-12 m-2">
-                  <ReviewBreakdown userReview={rating.star_reviews} />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+    <div className="col-lg-12" style={{ padding: 0 }}>
       {!reviews.reviews.length && <h4 className="bold py-3">No Reviews</h4>}
       <Reviews
         sellerId={reviews.userId}
@@ -124,7 +95,45 @@ export default function ReviewTable() {
         currentUser={currentUser}
         setReviews={setReviews}
         setRating={setRating}
+        getReview={getReview}
       />
+    </div>
+  );
+}
+
+function Rating({ reviews, rating, totalStars = 5 }) {
+  return (
+    <div className="listing-description ">
+      <div className="section-heading profile-description mt-4 shadow-sm mb-2 bg-light rounded">
+        <div
+          style={{
+            boxShadow: "0px 1px 5px -3px",
+          }}
+        >
+          <h2>Reviews</h2>
+        </div>
+        <div className="container">
+          {reviews.reviews.length > 0 && (
+            <div className="row pt-4">
+              <div className="col-lg-4">
+                <RatingAverage
+                  rating={rating.avg_rating}
+                  totalStars={totalStars}
+                />
+              </div>
+              <div className="col-lg-8">
+                <RatingBreakdown
+                  noOfReviews={rating.no_of_reviews}
+                  totalNoOfReviews={reviews.reviews.length}
+                />
+              </div>
+              <div className="col-lg-12 m-2">
+                <ReviewBreakdown userReview={rating.star_reviews} />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -266,10 +275,15 @@ function Reviews({
   currentUser = null,
   setReviews,
   setRating,
+  getReview = null,
 }) {
   let usersReview = reviews
     .map((rev) => (
-      <UserReview key={rev.reviewer_id} review={rev} totalStars={totalStars} />
+      <UserReview
+        key={rev.reviewer_id + rev.timestamp}
+        review={rev}
+        totalStars={totalStars}
+      />
     ))
     .reverse();
   return (
@@ -285,6 +299,7 @@ function Reviews({
             reviews={reviews}
             setReviews={setReviews}
             setRating={setRating}
+            getReview={getReview}
           />
         </div>
       )}
@@ -316,10 +331,10 @@ function UserReview({ review, totalStars }) {
   }, [review, stars]);
   return (
     <div className="row col-lg-12 col-md-12 user-review-container">
-      <div className="col-lg-1 col-md-2 col-sm-2 col-xs-3 center-col review-img-container">
+      <div className="col-lg-2 col-md-2 col-sm-2 col-xs-3 center-col review-img-container">
         <img src={review.image_uri} className="img-rounded review-img" />
       </div>
-      <div className="col-lg-11 col-md-10 col-sm-10 col-xs-9">
+      <div className="col-lg-10 col-md-10 col-sm-10 col-xs-9">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>
             <div className="review-block-name">
@@ -383,6 +398,7 @@ function AddReview({
   reviews,
   setReviews,
   setRating,
+  getReview,
 }) {
   let [commStar, setCommStar] = React.useState(0);
   let [recomStar, setRecomStar] = React.useState(0);
@@ -444,17 +460,22 @@ function AddReview({
 
     console.log(response, "add_reviews_response");
 
-    setRating((prevRating) => {
-      let currentUserRatingAvg =
-        (body.behaviour +
-          body.communication +
-          body.expertise +
-          body.recommendation) /
-        4;
+    let currentUserRatingAvg =
+      (body.behaviour +
+        body.communication +
+        body.expertise +
+        body.recommendation) /
+      4;
 
+    let avg_rating_bg = 0;
+    let star_reviews_bg = {};
+
+    setRating((prevRating) => {
       let avg_rating =
         (prevRating.avg_rating * reviewsLength + currentUserRatingAvg) /
         (reviewsLength + 1);
+
+      avg_rating_bg = avg_rating;
       let star_reviews = {
         behaviour:
           (prevRating.star_reviews.behaviour * reviewsLength + body.behaviour) /
@@ -471,6 +492,8 @@ function AddReview({
             body.recommendation) /
           (reviewsLength + 1),
       };
+
+      star_reviews_bg = star_reviews;
 
       let currentUserStarRating = Math.round(
         (currentUserRatingAvg * totalStars) / 100
@@ -491,6 +514,8 @@ function AddReview({
         no_of_reviews: prevRating.no_of_reviews,
       };
     });
+
+    getReview(avg_rating_bg, star_reviews_bg);
 
     setReviews((prevReviews) => {
       let reviews = { ...prevReviews };
@@ -674,12 +699,13 @@ function AddReviewStars2({
   );
 }
 
-function ReviewStarRow({
+export function ReviewStarRow({
   fullWidth = false,
   stars = 0,
   totalStars = 5,
   clickHandler = null,
   size = 25,
+  color = "#63c5da",
 }) {
   let [starsArray, setStarsArray] = React.useState([]);
 
@@ -694,6 +720,7 @@ function ReviewStarRow({
           type="full"
           clickHandler={clickHandler}
           size={size}
+          color={color}
         />
       );
     }
@@ -707,6 +734,7 @@ function ReviewStarRow({
           type={halfStar === 0 ? "outline" : "half"}
           clickHandler={clickHandler}
           size={size}
+          color={color}
         />
       );
     }
@@ -721,6 +749,7 @@ function ReviewStarRow({
             type="outline"
             clickHandler={clickHandler}
             size={size}
+            color={color}
           />
         );
       }
@@ -748,6 +777,7 @@ function ReviewStar({
   clickHandler = null,
   type = "outline",
   size = 25,
+  color = "#63c5da",
 }) {
   return (
     <button
@@ -762,21 +792,21 @@ function ReviewStar({
           style={{ pointerEvents: "none" }}
           size={size}
           // color="#007bff"
-          color="#63c5da"
+          color={color}
         />
       )}
       {type === "half" && (
         <IoMdStarHalf
           style={{ pointerEvents: "none" }}
           size={size}
-          color="#63c5da"
+          color={color}
         />
       )}
       {type === "outline" && (
         <IoMdStarOutline
           style={{ pointerEvents: "none" }}
           size={size}
-          color="#63c5da"
+          color={color}
         />
       )}
     </button>

@@ -11088,9 +11088,9 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .single-profile-name {
-  font-size: 28px;
-  margin-bottom: 16px;
-  font-weight: 600;
+  font-size: 38px;
+  margin-bottom: 8px;
+  font-weight: 700;
   color: #444444;
 }
 
@@ -11104,6 +11104,19 @@ input[type="range"]::-webkit-slider-thumb {
 .signleProfileLocation {
   font-size: 16px;
   color: #555;
+}
+
+p.signleProfileLocation,
+p.signleProfileLocation span {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+p.signleProfileLocation b {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px 0;
 }
 
 .sorting-option {
@@ -11227,7 +11240,7 @@ input[type="range"]::-webkit-slider-thumb {
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
-  margin: 20px 0px 20px 20px;
+  /* margin: 20px 0px 20px 20px; */
 }
 
 .signupHeading {
@@ -11406,7 +11419,7 @@ a:hover {
 
 .review-img {
   width: 100%;
-  max-width: 80px;
+  max-width: 90px;
 }
 
 .btn-grey {

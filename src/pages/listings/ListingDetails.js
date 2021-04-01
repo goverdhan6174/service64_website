@@ -23,7 +23,9 @@ import { FaCentercode } from "react-icons/fa";
 
 import MetaDecorator from "./../../utils/metaDecorator";
 import metaData from "./../../meta/listingDetails";
-import ReviewTable from "../../components/addlisting/ReviewTable";
+import ReviewTable, {
+  ReviewStarRow,
+} from "../../components/addlisting/ReviewTable";
 
 // ProductModal.find({}).skip(Number(skip)).limit(Number(limit)).exec()
 
@@ -43,6 +45,14 @@ class ListingDetails extends Component {
       buttonText: "Watch Video",
       mapTitle: "Location",
       peopleViewtitle: "People Also Viewed",
+      stars: 0,
+      totalStars: 5,
+      star_reviews: {
+        behaviour: 0,
+        communication: 0,
+        expertise: 0,
+        recommendation: 0,
+      },
       ratings: [
         <IoMdStar />,
         <IoMdStar />,
@@ -70,6 +80,13 @@ class ListingDetails extends Component {
     }
   }
 
+  getReview(stars, star_reviews) {
+    this.setState({
+      stars,
+      star_reviews,
+    });
+  }
+
   render() {
     return (
       <main className="listing-details">
@@ -90,7 +107,7 @@ class ListingDetails extends Component {
         <section className="single-listing-area margin-bottom-40px user-select-none">
           <div className="container">
             <div className="justify-content-center row col-lg-12">
-              <div className="col-lg-11">
+              {/* <div className="col-lg-11">
                 <div className="single-listing-wrap">
                   <div className="col-lg-12">
                     <div className="listing-description">
@@ -149,7 +166,7 @@ class ListingDetails extends Component {
                                 );
                               })}
                             </p>
-                            {/* <ReviewFields /> */}
+                          <ReviewFields /> 
                           </div>
                         </div>
 
@@ -168,20 +185,63 @@ class ListingDetails extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="col-lg-7">
-                <div className="single-listing-wrap">
+              <div className="col-lg-8">
+                <div className="single-listing-wrap col-lg-12 bg-light mb-4 section-heading profile-description rounded">
+                  <div className="listing-description">
+                    <div className="section-heading mt-4 row">
+                      <div className="col-lg-4 sellerImage p-4">
+                        <img
+                          src={this.state.seller_img}
+                          style={{ width: "100%" }}
+                        />
+                      </div>
+                      <div
+                        className="col-lg-7 pt-3 center-col"
+                        style={{ justifyContent: "space-between" }}
+                      >
+                        <div
+                          className="col-lg-12 center-col p-0"
+                          style={{ alignItems: "flex-start" }}
+                        >
+                          <h4 className="single-profile-name">
+                            {this.state.title}
+                          </h4>
+                          <h3
+                            className="single-profile-category user-select-none"
+                            style={{ userSelect: "none" }}
+                          >
+                            {this.state.descTitle.toUpperCase()}
+                          </h3>
+                          <div className="mt-1">
+                            <div className="py-2 pl-1">
+                              <ReviewStarRow
+                                stars={
+                                  this.state.stars *
+                                  0.01 *
+                                  this.state.totalStars
+                                }
+                                color={"#ffd700"}
+                              />
+                            </div>
+                            <ContactInfo />
+                          </div>
+                          {/*
+                          <ReviewFields /> */}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="single-listing-wrap col-lg-12 p-0 mb-4 ">
                   <div className="col-lg-12 padding-0">
                     <div className="listing-description ">
-                      <div className="section-heading profile-description mt-0 shadow-sm mb-2 bg-light rounded">
-                        <div
-                          style={{
-                            boxShadow: "0px 1px 5px -3px",
-                          }}
-                        >
-                          <h2>Description</h2>
-                        </div>
+                      <div className="section-heading profile-description mt-0 mb-2 bg-light rounded">
+                        {/* <div style={{boxShadow: "0px 1px 5px -3px"}}> */}
+                        <h4 style={{ padding: "20px 0 0 20px" }}>About</h4>
+                        {/* </div> */}
                         <p className="profile-dec font-size-14 text-justify">
                           {this.state.desc}
                         </p>
@@ -209,23 +269,107 @@ class ListingDetails extends Component {
                   </div>
 
                         */}
+                  <ReviewTable
+                    sellerId={this.state.id}
+                    getReview={this.getReview.bind(this)}
+                  />
                 </div>
               </div>
 
-              <div className="col-lg-4  padding-0">
-                <div className="">
-                  <div className="section-heading profile-description mt-0 shadow-sm mb-2 bg-light rounded">
-                    <div
-                      style={{
-                        boxShadow: "0px 1px 5px -3px",
-                      }}
-                    >
-                      <h2>Work Hours</h2>
-                    </div>
-                    <p className="profile-hours font-size-16 text-justify">
-                      Sunday - Thus: 9AM - 7AM
-                    </p>
-                  </div>
+              <div className="col-lg-4 " style={{ paddingTop: "20px" }}>
+                <div className="col-lg-12 section-heading profile-description bg-light rounded mb-4 py-3  ">
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{ justifyContent: "space-between" }}
+                  >
+                    {<b>City: </b>}
+                    {this.state.city}
+                  </p>
+
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{
+                      justifyContent: "space-between",
+                      textAlign: "end",
+                    }}
+                  >
+                    <b className="mr-5">Areas: </b>
+                    <span>
+                      {this.state.locations.map((i, k) => {
+                        return (
+                          <span key={k}>
+                            {" "}
+                            {i}
+                            {this.state.locations.length != k + 1 ? (
+                              <span>,</span>
+                            ) : (
+                              ""
+                            )}{" "}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </p>
+
+                  <hr />
+
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{ justifyContent: "space-between" }}
+                  >
+                    {<b>Communication </b>}
+                    {(
+                      this.state.star_reviews.communication *
+                      0.01 *
+                      this.state.totalStars
+                    ).toFixed(1)}
+                  </p>
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{ justifyContent: "space-between" }}
+                  >
+                    {<b>Recommend </b>}
+                    {(
+                      this.state.star_reviews.recommendation *
+                      0.01 *
+                      this.state.totalStars
+                    ).toFixed(1)}
+                  </p>
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{ justifyContent: "space-between" }}
+                  >
+                    {<b>Service </b>}
+                    {(
+                      this.state.star_reviews.expertise *
+                      0.01 *
+                      this.state.totalStars
+                    ).toFixed(1)}
+                  </p>
+                  <p
+                    className="signleProfileLocation p-0 center"
+                    style={{ justifyContent: "space-between" }}
+                  >
+                    {<b>Behaviour </b>}
+                    {(
+                      this.state.star_reviews.behaviour *
+                      0.01 *
+                      this.state.totalStars
+                    ).toFixed(1)}
+                  </p>
+                </div>
+
+                <div className="section-heading profile-description mt-0 mb-4 bg-light rounded">
+                  {/* <div
+                    style={{
+                      boxShadow: "0px 1px 5px -3px",
+                    }}
+                  > */}
+                  <h4 style={{ padding: "20px 0 0 20px" }}>Work Hours </h4>
+                  {/* </div> */}
+                  <p className="profile-hours font-size-16 text-justify">
+                    Sunday - Thus: 9AM - 7AM
+                  </p>
                 </div>
 
                 {/*
@@ -284,8 +428,6 @@ class ListingDetails extends Component {
                   <ReviewFields details={this.props.item} />
                   <ListingDetailsComments />
                 </div>*/}
-
-              <ReviewTable sellerId={this.state.id} />
             </div>
           </div>
         </section>
