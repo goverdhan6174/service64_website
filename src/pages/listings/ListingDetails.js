@@ -26,6 +26,7 @@ import metaData from "./../../meta/listingDetails";
 import ReviewTable, {
   ReviewStarRow,
 } from "../../components/addlisting/ReviewTable";
+import ReactPlayer from "react-player";
 
 // ProductModal.find({}).skip(Number(skip)).limit(Number(limit)).exec()
 
@@ -36,6 +37,7 @@ class ListingDetails extends Component {
       isOpen: false,
       descTitle: "Category",
       locations: ["locations"],
+      videoUrl: "",
       desc:
         "Nemo ucxqui officia voluptatem accu santium doloremque laudantium, totam rem ape dicta sunt dose explicabo. Nemo enim ipsam voluptatem quia voluptas. Excepteur sint occaecat cupidatat non proident, sunt in culpa kequi officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan tium dolorem que laudantium, totam rem aperiam the eaque ipsa quae abillo was inventore veritatis keret quasi aperiam architecto beatae vitae dicta sunt explicabo. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
       featureTitle: "Features",
@@ -76,6 +78,7 @@ class ListingDetails extends Component {
         city: details.city,
         seller_img: details.seller_img,
         locations: details.locations,
+        videoUrl: details.videoUrl ? details.videoUrl : "",
       });
     }
   }
@@ -107,86 +110,6 @@ class ListingDetails extends Component {
         <section className="single-listing-area margin-bottom-40px user-select-none">
           <div className="container">
             <div className="justify-content-center row col-lg-12">
-              {/* <div className="col-lg-11">
-                <div className="single-listing-wrap">
-                  <div className="col-lg-12">
-                    <div className="listing-description">
-                      <div className="section-heading mt-4 row singleProfileCard">
-                        <div className="col-lg-8 row padding-0">
-                          <div
-                            className="col-lg-5 sellerImage"
-                            style={{
-                              backgroundImage: `url(${this.state.seller_img})`,
-                              backgroundPosition: "center",
-                              height: "300px",
-                              backgroundRepeat: "no-repeat",
-                              backgroundSize: "cover",
-                              marginLeft: "35px",
-                            }}
-                          ></div>
-                          <div
-                            className="col-lg-6"
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              marginRight: "4px",
-                              paddingLeft: "40px",
-                              paddingTop: "20px",
-                            }}
-                          >
-                            <h2 className="single-profile-name">
-                              {this.state.title}
-                            </h2>
-                            <h3
-                              className="single-profile-category user-select-none"
-                              style={{ userSelect: "none" }}
-                            >
-                              {this.state.descTitle}
-                            </h3>
-
-                            <p className="signleProfileLocation">
-                              {<b>City: </b>}
-                              {this.state.city}
-                            </p>
-
-                            <p className="signleProfileLocation">
-                              {<b>Areas: </b>}
-                              {this.state.locations.map((i, k) => {
-                                return (
-                                  <span key={k}>
-                                    {" "}
-                                    {i}
-                                    {this.state.locations.length != k + 1 ? (
-                                      <span>,</span>
-                                    ) : (
-                                      ""
-                                    )}{" "}
-                                  </span>
-                                );
-                              })}
-                            </p>
-                          <ReviewFields /> 
-                          </div>
-                        </div>
-
-                        <div
-                          className="listing-description col-lg-4"
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            padding: "50px 0px 35px 20px",
-                          }}
-                        >
-                          <ContactInfo />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
-
               <div className="col-lg-8">
                 <div className="single-listing-wrap col-lg-12 bg-light mb-4 section-heading profile-description rounded">
                   <div className="listing-description">
@@ -359,69 +282,21 @@ class ListingDetails extends Component {
                   </p>
                 </div>
 
-                <div className="section-heading profile-description mt-0 mb-4 bg-light rounded">
-                  {/* <div
+                {this.state.videoUrl && (
+                  <ReactPlayer
+                    url={this.state.videoUrl}
                     style={{
-                      boxShadow: "0px 1px 5px -3px",
+                      maxWidth: "100%",
                     }}
-                  > */}
+                  />
+                )}
+
+                <div className="section-heading profile-description mt-4 mb-4 bg-light rounded">
                   <h4 style={{ padding: "20px 0 0 20px" }}>Work Hours </h4>
-                  {/* </div> */}
                   <p className="profile-hours font-size-16 text-justify">
                     Sunday - Thus: 9AM - 7AM
                   </p>
                 </div>
-
-                {/*
-
-                <div className="">
-                  <div className="section-heading profile-description mt-0 shadow-sm mb-2 bg-light rounded">
-                    <div
-                      style={{
-                        boxShadow: "0px 1px 5px -3px",
-                      }}
-                    >
-                      <h2>Gallery</h2>
-                    </div>
-                    <div
-                      className="row justify-content-center"
-                      style={{ padding: "25px" }}
-                    >
-                      <div className="col-lg-6 padding-0">
-                        <img
-                          src={pic}
-                          width="100%"
-                          alt="pic"
-                          style={{ padding: "5px" }}
-                        />
-                      </div>
-                      <div className="col-lg-6 padding-0">
-                        <img
-                          src={pic}
-                          width="100%"
-                          alt="pic"
-                          style={{ padding: "5px" }}
-                        />
-                      </div>
-                      <div className="col-lg-6 padding-0">
-                        <img
-                          src={pic}
-                          width="100%"
-                          alt="pic"
-                          style={{ padding: "5px" }}
-                        />
-                      </div>
-                      <div className="col-lg-6 padding-0">
-                        <img
-                          src={pic}
-                          width="100%"
-                          alt="pic"
-                          style={{ padding: "5px" }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                    </div>*/}
               </div>
               {/*
                 <div className="col-lg-11">

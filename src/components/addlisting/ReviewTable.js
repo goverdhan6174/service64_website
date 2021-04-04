@@ -313,12 +313,15 @@ function UserReview({ review, totalStars }) {
   // const stars = React.useRef();
   React.useEffect(() => {
     let timestamp = new Date(review.timestamp);
+    console.log("TIMESTAMP" , timestamp)
     date.current = timestamp.toLocaleDateString(undefined, {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     });
+
+    console.log(date.current)
 
     let ratings =
       (review.communication +
