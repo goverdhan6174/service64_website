@@ -13,6 +13,10 @@ import {
   get_cit,
   get_loc,
   get_cat,
+  get_cit_has_apr_users,
+  get_loc_has_apr_users,
+  get_cat_has_apr_users,
+  edt_cat,
 } from "../../../store/action";
 import { Link } from "react-router-dom";
 
@@ -27,6 +31,7 @@ class BannerOneSearchInput extends Component {
       cities: [],
       locations: [],
       categories: [],
+      total_categories: [],
       err_message: false,
     };
   }
@@ -45,6 +50,37 @@ class BannerOneSearchInput extends Component {
 
   handleChangeLoc = (ev) => {
     this.setState({ selected_location: ev.label });
+    let selected_city = this.state.selected_city;
+
+    let filterCategoriesByCity = this.state.total_categories.filter(
+      (category) => {
+        let city = category.areas.find(
+          (area) => area.city === this.state.selected_city
+        );
+        if (!!city) return true;
+        return false;
+      }
+    );
+
+    let filterCategoriesByLoc = filterCategoriesByCity.filter((category) => {
+      let city = category.areas.find((area) => area.city === selected_city);
+      if (!city) return false;
+      let location = city.locations.find((loc) => loc.label === ev.label);
+      if (!location) return false;
+      return true;
+    });
+
+    this.setState({
+      categories: filterCategoriesByLoc.sort((a, b) => {
+        if (a.label < b.label) {
+          return -1;
+        }
+        if (a.label > b.label) {
+          return 1;
+        }
+        return 0;
+      }),
+    });
   };
 
   search() {
@@ -85,7 +121,8 @@ class BannerOneSearchInput extends Component {
   }
 
   get_cit() {
-    this.props.actions.get_loc().then((res) => {
+    // this.props.actions.get_loc()
+    this.props.actions.get_loc_has_apr_users().then((res) => {
       let array = res.data;
       let new_arr = [];
       if (array.length > 0) {
@@ -119,7 +156,8 @@ class BannerOneSearchInput extends Component {
   }
 
   get_cat() {
-    this.props.actions.get_cat().then((res) => {
+    // this.props.actions.get_cat()
+    this.props.actions.get_cat_has_apr_users().then((res) => {
       let array = res.data;
       let new_arr = [];
       if (array.length > 0) {
@@ -129,6 +167,7 @@ class BannerOneSearchInput extends Component {
           new_arr.push(element);
         }
         this.setState({
+          total_categories: new_arr,
           categories: new_arr.sort((a, b) => {
             if (a.label < b.label) {
               return -1;
@@ -139,6 +178,7 @@ class BannerOneSearchInput extends Component {
             return 0;
           }),
         });
+        console.log("Category", array);
       }
     });
   }
@@ -170,6 +210,24 @@ class BannerOneSearchInput extends Component {
         selected_location: null,
       });
     }
+
+    let filterCategories = this.state.total_categories.filter((category) => {
+      let city = category.areas.find((area) => area.city === ev.label);
+      if (!!city) return true;
+      return false;
+    });
+
+    this.setState({
+      categories: filterCategories.sort((a, b) => {
+        if (a.label < b.label) {
+          return -1;
+        }
+        if (a.label > b.label) {
+          return 1;
+        }
+        return 0;
+      }),
+    });
   };
 
   componentDidMount() {
@@ -240,6 +298,9 @@ const mapDispatchToProps = (dispatchEvent) => {
         get_cit,
         get_loc,
         get_cat,
+        get_cit_has_apr_users,
+        get_loc_has_apr_users,
+        get_cat_has_apr_users,
         moveto,
       },
       dispatchEvent
