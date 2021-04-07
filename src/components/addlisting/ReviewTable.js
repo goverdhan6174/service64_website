@@ -1,8 +1,12 @@
 import React from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
-import { add_review, get_reviews } from "../../store/action";
+import { add_review, get_reviews, report_review } from "../../store/action";
 
-export default function ReviewTable({ getReview, totalStars = 5 }) {
+export default function ReviewTable({
+  getReview,
+  totalStars = 5,
+  isOnProfile = false,
+}) {
   const [currentUser, setCurrentUser] = React.useState();
   const [reviews, setReviews] = React.useState({
     userId: "",
@@ -39,12 +43,16 @@ export default function ReviewTable({ getReview, totalStars = 5 }) {
 
   React.useEffect(() => {
     const details = JSON.parse(localStorage.getItem("__current_user__"));
-    const user_id = JSON.parse(localStorage.getItem('"_ud_"'))._id;
+    const user_id = isOnProfile
+      ? details._id
+      : JSON.parse(localStorage.getItem('"_ud_"'))._id;
     setReviews((pr) => {
       pr.userId = user_id;
       return pr;
     });
     setCurrentUser(details);
+
+    console.log("current user details", details, "user-id", user_id);
 
     //What can I say, I haven't bind get_reviews to redux (store) like prev dev
     // so and don't wanna change the pattern and structure of code/file
@@ -96,6 +104,7 @@ export default function ReviewTable({ getReview, totalStars = 5 }) {
         setReviews={setReviews}
         setRating={setRating}
         getReview={getReview}
+        isOnProfile={isOnProfile}
       />
     </div>
   );
@@ -276,21 +285,25 @@ function Reviews({
   setReviews,
   setRating,
   getReview = null,
+  isOnProfile,
 }) {
   let usersReview = reviews
     .map((rev) => (
       <UserReview
-        key={rev.reviewer_id + rev.timestamp}
+        key={rev._id}
+        currentUser={currentUser}
         review={rev}
         totalStars={totalStars}
+        isOnProfile={isOnProfile}
       />
     ))
     .reverse();
+
   return (
     <>
       {usersReview}
 
-      {currentUser && (
+      {currentUser && currentUser._id !== sellerId && (
         <div className="review-block">
           {/* <h4 className="my-3">Share your experience</h4> */}
           <AddReview
@@ -307,21 +320,57 @@ function Reviews({
   );
 }
 
-function UserReview({ review, totalStars }) {
+function UserReview({ currentUser, review, totalStars, isOnProfile }) {
   let [stars, setStars] = React.useState(0);
+  let [reviewDesc, setReviewDesc] = React.useState("");
+  let [error, setError] = React.useState("");
+  let [isModalOpen, setModalOpen] = React.useState(false);
+
   let date = React.useRef();
+  let errorTimer = React.useRef(null);
+
+  let handleSubmit = async (event) => {
+    event.preventDefault();
+    let body = {
+      seller_id: currentUser._id,
+      review_id: review._id,
+      description: reviewDesc,
+    };
+
+    //What can I say, I haven't bind add_review to redux (store) like prev dev
+    // so and don't wanna change the pattern and structure of code/file
+    // this is only way
+    let dispatch = report_review(body);
+    let response = await dispatch();
+
+    if (response.data.error) {
+      clearTimeout(errorTimer.current);
+      setError(response.data.error);
+      // setError("A problem has been occurred while submitting your data.");
+      errorTimer.current = setTimeout(() => {
+        setError("");
+      }, 5000);
+      return;
+    }
+
+    if (response.data.isSuccessful) {
+      review.isReported = true;
+      setModalOpen(false);
+    }
+  };
+
+  let handleChange = (event) => {
+    setReviewDesc(event.target.value);
+  };
   // const stars = React.useRef();
   React.useEffect(() => {
     let timestamp = new Date(review.timestamp);
-    console.log("TIMESTAMP" , timestamp)
     date.current = timestamp.toLocaleDateString(undefined, {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     });
-
-    console.log(date.current)
 
     let ratings =
       (review.communication +
@@ -338,7 +387,13 @@ function UserReview({ review, totalStars }) {
         <img src={review.image_uri} className="img-rounded review-img" />
       </div>
       <div className="col-lg-10 col-md-10 col-sm-10 col-xs-9">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <div>
             <div className="review-block-name">
               <a href="#">{review.reviewer_name}</a>
@@ -356,9 +411,56 @@ function UserReview({ review, totalStars }) {
               />
             </div>
           </div>
+          {!!isOnProfile && (
+            <button
+              disabled={!!review.isReported}
+              className="btn btn-outline-danger"
+              style={{ height: "50%" }}
+              onClick={() => setModalOpen((ps) => !ps)}
+            >
+              {!review.isReported ? "Report" : "Reported"}
+            </button>
+          )}
         </div>
         <div className="review-block-description">{review.description}</div>
       </div>
+      {!!isModalOpen && (
+        <form
+          onSubmit={handleSubmit}
+          className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3"
+          style={{ textAlign: "end" }}
+        >
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              id="reviewDescription"
+              placeholder="Enter brief description about your experience with the seller"
+              rows={5}
+              value={reviewDesc}
+              onChange={handleChange}
+            />
+          </div>
+          {!!error && (
+            <div className="alert alert-danger alert-dismissible fade show form-group">
+              <strong>Error!</strong> {`${error}`}
+              <button
+                type="button"
+                className="close"
+                data-dismiss="alert"
+                onClick={() => {
+                  clearTimeout(errorTimer.current);
+                  setError("");
+                }}
+              >
+                &times;
+              </button>
+            </div>
+          )}
+          <button type="submit" className="btn btn-danger">
+            Report Review
+          </button>
+        </form>
+      )}
     </div>
   );
 }
@@ -419,7 +521,6 @@ function AddReview({
   let handleSubmit = async (event) => {
     event.preventDefault();
     let reviewsLength = reviews.length;
-    console.log("CLICKED HANDLE SUBMIT");
 
     if (!(commStar && recomStar && experStar && behaStar)) {
       console.log("ERROR");
@@ -460,8 +561,6 @@ function AddReview({
       setClear();
       return;
     }
-
-    console.log(response, "add_reviews_response");
 
     let currentUserRatingAvg =
       (body.behaviour +

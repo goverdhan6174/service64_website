@@ -8,6 +8,9 @@ import { bindActionCreators } from "redux";
 import {
   get_loc,
   get_cat,
+  get_cit_has_apr_users,
+  get_loc_has_apr_users,
+  get_cat_has_apr_users,
   val,
   searchByCity,
   searchByCategory,
@@ -173,7 +176,8 @@ class GenericHeader extends Component {
   };
 
   get_cat() {
-    this.props.actions.get_cat().then((res) => {
+    // this.props.actions.get_cat()
+    this.props.actions.get_cat_has_apr_users().then((res) => {
       let array = res.data;
       let new_arr = [];
       if (array.length > 0) {
@@ -199,7 +203,8 @@ class GenericHeader extends Component {
   }
 
   get_loc() {
-    this.props.actions.get_loc().then((res) => {
+    // this.props.actions.get_loc()
+    this.props.actions.get_loc_has_apr_users().then((res) => {
       console.log("get_loc called", res);
       let array = res.data;
       let new_arr = [];
@@ -311,6 +316,9 @@ const mapDispatchToProps = (dispatchEvent) => {
         val,
         get_loc,
         get_cat,
+        get_cit_has_apr_users,
+        get_loc_has_apr_users,
+        get_cat_has_apr_users,
         searchByCity,
         searchByCategory,
         search_res,

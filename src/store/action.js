@@ -426,6 +426,21 @@ export function get_cat() {
   };
 }
 
+export function get_cat_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_cat_has_apr_users`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
 export function del_cat(body) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
@@ -486,6 +501,21 @@ export function get_cit() {
   };
 }
 
+export function get_cit_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_cit_has_apr_users`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
 export function del_cit(body) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
@@ -536,6 +566,21 @@ export function get_loc() {
     return new Promise((resolve, reject) => {
       axios
         .get(`${URI}/admin/get_loc`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
+export function get_loc_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_loc_has_apr_users`)
         .then((response) => {
           resolve(response);
         })
@@ -622,3 +667,19 @@ export function get_reviews(id) {
     });
   };
 }
+
+export function report_review(body) {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${URI}/reviews/reportreview`, body)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
