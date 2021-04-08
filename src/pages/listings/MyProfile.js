@@ -21,6 +21,7 @@ import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 import pic from "../../components/sliders/image.png";
 import MetaDecorator from "./../../utils/metaDecorator";
 import metaData from "./../../meta/myProfile";
+import logo from "../../assets/images/favicon.png";
 
 import ReviewTable, {
   ReviewStarRow,
@@ -81,6 +82,8 @@ class MyProfile extends Component {
   }
   componentDidMount() {
     const details = JSON.parse(localStorage.getItem("__current_user__"));
+    console.log(details.seller_img, "IMAGE");
+
     if (details !== null) {
       this.setState({
         desc: details.description,
@@ -133,7 +136,6 @@ class MyProfile extends Component {
   render() {
     const { styles } = this.state;
     const { user_type, title, user_number, useremail } = this.state;
-
     return (
       <main className="listing-details">
         {/* SEO-Meta-Data */}
@@ -161,7 +163,11 @@ class MyProfile extends Component {
                           <div className="section-heading mt-4 row">
                             <div className="col-lg-4 sellerImage p-4">
                               <img
-                                src={this.state.seller_img}
+                                src={
+                                  !!this.state.seller_img
+                                    ? this.state.seller_img
+                                    : logo
+                                }
                                 style={{ width: "100%" }}
                               />
                             </div>

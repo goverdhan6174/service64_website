@@ -28,6 +28,7 @@ import {
   val,
   recommendedCityCategory,
 } from "../../store/action";
+import logo from "../../assets/images/favicon.png";
 import { bindActionCreators } from "redux";
 
 class PlaceGrid extends Component {
@@ -918,7 +919,7 @@ class PlaceGrid extends Component {
                         style={{ overflow: "hidden" }}
                       >
                         <img
-                          src={items.seller_img}
+                          src={!!items.seller_img ? items.seller_img : logo}
                           className="card__img"
                           alt="Profile-Photo"
                         />

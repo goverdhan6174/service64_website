@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 import { add_review, get_reviews, report_review } from "../../store/action";
+import logo from "../../assets/images/favicon.png"
 
 export default function ReviewTable({
   getReview,
@@ -384,7 +385,7 @@ function UserReview({ currentUser, review, totalStars, isOnProfile }) {
   return (
     <div className="row col-lg-12 col-md-12 user-review-container">
       <div className="col-lg-2 col-md-2 col-sm-2 col-xs-3 center-col review-img-container">
-        <img src={review.image_uri} className="img-rounded review-img" />
+        <img src={!!review.image_uri ? review.image_uri : logo} className="img-rounded review-img" />
       </div>
       <div className="col-lg-10 col-md-10 col-sm-10 col-xs-9">
         <div

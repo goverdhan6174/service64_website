@@ -20,6 +20,7 @@ import { connect } from "react-redux";
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 import pic from "../../components/sliders/image.png";
 import { FaCentercode } from "react-icons/fa";
+import logo from "../../assets/images/favicon.png";
 
 import MetaDecorator from "./../../utils/metaDecorator";
 import metaData from "./../../meta/listingDetails";
@@ -116,7 +117,11 @@ class ListingDetails extends Component {
                     <div className="section-heading mt-4 row">
                       <div className="col-lg-4 sellerImage p-4">
                         <img
-                          src={this.state.seller_img}
+                          src={
+                            !!this.state.seller_img
+                              ? this.state.seller_img
+                              : logo
+                          }
                           style={{ width: "100%" }}
                         />
                       </div>
