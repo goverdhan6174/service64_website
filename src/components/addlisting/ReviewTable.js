@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 import { add_review, get_reviews, report_review } from "../../store/action";
-import logo from "../../assets/images/favicon.png"
+import logo from "../../assets/images/favicon.png";
 
 export default function ReviewTable({
   getReview,
@@ -52,8 +52,6 @@ export default function ReviewTable({
       return pr;
     });
     setCurrentUser(details);
-
-    console.log("current user details", details, "user-id", user_id);
 
     //What can I say, I haven't bind get_reviews to redux (store) like prev dev
     // so and don't wanna change the pattern and structure of code/file
@@ -304,19 +302,21 @@ function Reviews({
     <>
       {usersReview}
 
-      {currentUser && currentUser._id !== sellerId && (
-        <div className="review-block">
-          {/* <h4 className="my-3">Share your experience</h4> */}
-          <AddReview
-            sellerId={sellerId}
-            currentUser={currentUser}
-            reviews={reviews}
-            setReviews={setReviews}
-            setRating={setRating}
-            getReview={getReview}
-          />
-        </div>
-      )}
+      {currentUser &&
+        currentUser._id !== sellerId &&
+        currentUser.user_type === "Buyer" && (
+          <div className="review-block">
+            {/* <h4 className="my-3">Share your experience</h4> */}
+            <AddReview
+              sellerId={sellerId}
+              currentUser={currentUser}
+              reviews={reviews}
+              setReviews={setReviews}
+              setRating={setRating}
+              getReview={getReview}
+            />
+          </div>
+        )}
     </>
   );
 }
@@ -385,7 +385,10 @@ function UserReview({ currentUser, review, totalStars, isOnProfile }) {
   return (
     <div className="row col-lg-12 col-md-12 user-review-container">
       <div className="col-lg-2 col-md-2 col-sm-2 col-xs-3 center-col review-img-container">
-        <img src={!!review.image_uri ? review.image_uri : logo} className="img-rounded review-img" />
+        <img
+          src={!!review.image_uri ? review.image_uri : logo}
+          className="img-rounded review-img"
+        />
       </div>
       <div className="col-lg-10 col-md-10 col-sm-10 col-xs-9">
         <div
