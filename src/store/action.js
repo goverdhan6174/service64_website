@@ -1,10 +1,7 @@
 import axios from "axios";
 
-// const URI = "httpse://service64.herokuapp.com/app";
+const URI = "httpse://service64.herokuapp.com/app";
 // const URI = "http://localhost:9000/app";
-
-//backend HEROKU LINES
-const URI = "https://service64-development.herokuapp.com/app";
 
 export const selectCountry = (data) => ({
   type: "selecedtCountry",
@@ -426,6 +423,21 @@ export function get_cat() {
   };
 }
 
+export function get_cat_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_cat_has_apr_users`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
 export function del_cat(body) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
@@ -476,6 +488,21 @@ export function get_cit() {
     return new Promise((resolve, reject) => {
       axios
         .get(`${URI}/admin/get_cit`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
+export function get_cit_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_cit_has_apr_users`)
         .then((response) => {
           resolve(response);
         })
@@ -546,6 +573,21 @@ export function get_loc() {
   };
 }
 
+export function get_loc_has_apr_users() {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${URI}/admin/get_loc_has_apr_users`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
 export function del_loc(body) {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
@@ -591,7 +633,7 @@ export function mailtoadmin(body) {
   };
 }
 
-// <<<<<<<<<<<<< Add Review >>>>>>>>>>>>>>>>>>
+// <<<<<<<<<<<<< Users Secondary Details>>>>>>>>>>>>>>>>>>
 
 export function add_review(body) {
   return (dispatch) => {
@@ -613,6 +655,21 @@ export function get_reviews(id) {
     return new Promise((resolve, reject) => {
       axios
         .get(`${URI}/reviews/${id}`)
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
+}
+
+export function report_review(body) {
+  return (dispatch) => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${URI}/reviews/reportreview`, body)
         .then((response) => {
           resolve(response);
         })

@@ -26,7 +26,6 @@ import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 
-
 class ListingDetailsBreadcrumb extends Component {
   constructor(props) {
     super(props);
@@ -90,7 +89,7 @@ class ListingDetailsBreadcrumb extends Component {
 
   componentDidMount() {
     const details = JSON.parse(localStorage.getItem('"_ud_"'));
-    if (details !== undefined) {
+    if (details !== undefined && details !== null) {
       this.setState({
         desc: details.description,
         title: details.fullname,

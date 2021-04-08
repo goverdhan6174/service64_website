@@ -22,9 +22,13 @@ import {
   search,
   get_loc,
   get_cat,
+  get_cit_has_apr_users,
+  get_loc_has_apr_users,
+  get_cat_has_apr_users,
   val,
   recommendedCityCategory,
 } from "../../store/action";
+import logo from "../../assets/images/favicon.png";
 import { bindActionCreators } from "redux";
 
 class PlaceGrid extends Component {
@@ -386,7 +390,8 @@ class PlaceGrid extends Component {
   };
 
   get_cat() {
-    this.props.actions.get_cat().then((res) => {
+    // this.props.actions.get_cat()
+    this.props.actions.get_cat_has_apr_users().then((res) => {
       let array = res.data;
       let new_arr = [];
       if (array.length > 0) {
@@ -412,7 +417,8 @@ class PlaceGrid extends Component {
   }
 
   get_loc() {
-    this.props.actions.get_loc().then((res) => {
+    // this.props.actions.get_loc()
+    this.props.actions.get_loc_has_apr_users().then((res) => {
       console.log("get_loc called", res);
       let array = res.data;
       let new_arr = [];
@@ -913,7 +919,7 @@ class PlaceGrid extends Component {
                         style={{ overflow: "hidden" }}
                       >
                         <img
-                          src={items.seller_img}
+                          src={!!items.seller_img ? items.seller_img : logo}
                           className="card__img"
                           alt="Profile-Photo"
                         />
@@ -1052,6 +1058,9 @@ const mapDispatchToProps = (dispatchEvent) => {
         search,
         get_loc,
         get_cat,
+        get_cit_has_apr_users,
+        get_loc_has_apr_users,
+        get_cat_has_apr_users,
         val,
         recommendedCityCategory,
       },

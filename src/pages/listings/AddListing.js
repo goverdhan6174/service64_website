@@ -139,14 +139,6 @@ class AddListing extends Component {
     } = this.state;
     if (saller_img === "") {
       this.setState({
-        saller_img:
-          "https://firebasestorage.googleapis.com/v0/b/service64-97623.appspot.com/o/images%2F16161356629771616135662830.jpg?alt=media&token=95433300-4564-46aa-9bc6-027485dced1c",
-        photo_name: Math.random(),
-      });
-      console.log(
-        "remove above line after testing and also remove photoupload saveimg return value"
-      );
-      this.setState({
         message_err: "Please upload your photo",
       });
     } else if (saller_name.length < 1) {
@@ -181,7 +173,7 @@ class AddListing extends Component {
       this.setState({
         message_err: "Please write about yourself.",
       });
-    } else if (description.length < 40 || description.length > 400) {
+    } else if (description.length > 40 && description.length < 400) {
       this.setState({
         message_err:
           "An effective overview needs to be at least 40 to 400 characters",

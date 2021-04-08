@@ -105,7 +105,6 @@ function PhotoUploader(props) {
   };
 
   function save_img(compressedFile) {
-    return;
     var d = new Date().getTime();
     var num = d.toString();
     const uploadTask = storage
