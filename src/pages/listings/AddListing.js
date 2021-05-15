@@ -168,8 +168,6 @@ class AddListing extends Component {
       dateHasError = "Invalid Date";
     }
 
-    console.log(agreed, "ISAGREED");
-
     if (saller_img === "") {
       this.setState({
         message_err: "Please upload your photo",
