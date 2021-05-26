@@ -15,7 +15,7 @@ class HowItWorkOneVideo extends Component {
         this.setState({ isOpen: true })
     }
     hiwcontent = {
-        img: require('../../../assets/images/signupButtonPoint.webp'),
+        img: require('../../../assets/images/singupImage.jpg'),
         btnText: 'watch how to register'
     }
     render() {
@@ -23,7 +23,7 @@ class HowItWorkOneVideo extends Component {
             <>
                 <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='S6Df0j4H-HA' onClose={() => this.setState({ isOpen: false })} />
                 <div className="hiw-video-btn">
-                    <img src={this.hiwcontent.img} alt="video-img" />
+                    <img  src={this.hiwcontent.img} alt="video-img" />
                     <div className="video-text">
                         <Link className="mfp-iframe video-popup-btn icon-element-2"
                            onClick={this.openModal}

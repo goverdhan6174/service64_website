@@ -4,7 +4,7 @@ import SocialProfile from "../../other/account/SocialProfile";
 
 class FooterLeftWidget extends Component {
     state = {
-        logo: require('../../../assets/images/Service64-Logo-dark.png'),
+        logo: require('../../../assets/images/Service64_logo-dark.svg'),
         desc: 'We are a directory website, where we have a large number of hand vetted professionals to answer your call and get the problem solved. ',
     }
     render() {

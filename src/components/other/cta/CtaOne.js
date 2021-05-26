@@ -65,7 +65,7 @@ export default class CtaOne extends Component {
                                         })}
                                     </ul>
                                     <div className="btn-box text-left margin-top-40px">                                        
-                                      <a className="down-btn" target="_blank" href="https://play.google.com/store/apps/details?id=com.service64"><span className="btn_icon"><AiFillAndroid /></span> Download android app</a>
+                                      <a className="down-btn" rel="noopener" target="_blank" href="https://play.google.com/store/apps/details?id=com.service64"><span className="btn_icon"><AiFillAndroid /></span> Download android app</a>
                                         
                                     </div>
                                 </div>

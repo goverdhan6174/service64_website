@@ -421,26 +421,6 @@ class AddListing extends Component {
                               </div>
                             </div>
 
-                            <div className="col-lg-12">
-                              <div className="input-box">
-                                <label className="label-text">
-                                  Description
-                                </label>
-                                <div className="form-group">
-                                  <span className="la form-icon">
-                                    <BsPencil />
-                                  </span>
-                                  <textarea
-                                    className="message-control form-control"
-                                    name="description"
-                                    value={this.state.description}
-                                    onChange={this.value.bind(this)}
-                                    placeholder="Write your listing description"
-                                  ></textarea>
-                                </div>
-                              </div>
-                            </div>
-
                             <div className="col-lg-6">
                               <div className="input-box">
                                 <label className="label-text">
@@ -484,7 +464,7 @@ class AddListing extends Component {
                               </div>
                             </div>
 
-                            <div className="col-lg-12">
+                            <div className="col-lg-6">
                               <div className="input-box">
                                 <label className="label-text">
                                   Current Address
@@ -505,7 +485,7 @@ class AddListing extends Component {
                               </div>
                             </div>
 
-                            <div className="col-lg-12">
+                            <div className="col-lg-6">
                               <div className="input-box">
                                 <label className="label-text">
                                   Permanent Address
@@ -525,6 +505,28 @@ class AddListing extends Component {
                                 </div>
                               </div>
                             </div>
+
+                            <div className="col-lg-12">
+                              <div className="input-box">
+                                <label className="label-text">
+                                  Description
+                                </label>
+                                <div className="form-group">
+                                  <span className="la form-icon">
+                                    <BsPencil />
+                                  </span>
+                                  <textarea
+                                    className="message-control form-control"
+                                    name="description"
+                                    value={this.state.description}
+                                    onChange={this.value.bind(this)}
+                                    placeholder="Write your listing description"
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </div>
+
+
                           </div>
                         </form>
                       </div>

@@ -175,7 +175,7 @@ class LoginBox extends Component {
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
-                                    <p className="font-weight-medium">Not a member? <Link to="/sign-up" className="color-text"> Register</Link></p>
+                                    <p className="font-weight-medium">want to get calls? <Link to="/sign-up" className="color-text"> Register</Link></p>
                                 </div>
                             </div>
                             {/* </form> */}

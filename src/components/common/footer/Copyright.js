@@ -10,7 +10,7 @@ class Copyright extends Component {
                     <div className="col-lg-12">
                         <div className="copy-right padding-top-60px">
                             <p className="copy__desc">
-                                @ 2020 Service64.com
+                            Copyright @ {(new Date().getFullYear())} Service64.com | All Rights Reserved
                             </p>
 
                             <CopyrightMenu />

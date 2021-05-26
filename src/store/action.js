@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URI = "https://services64.herokuapp.com/app";
+const URI = "https://service64.herokuapp.com/app";
 // const URI = "http://localhost:9000/app";
 
 export const selectCountry = (data) => ({

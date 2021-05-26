@@ -3,7 +3,7 @@ import SignInOptions from "./SignInOptions";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaRegEnvelope } from "react-icons/fa";
-import { FiLock } from "react-icons/fi";
+import { FiLock, FiPhone } from "react-icons/fi";
 import { user_signup } from "../../../store/action";
 
 import { connect } from "react-redux";
@@ -52,15 +52,15 @@ class SignUpBox extends Component {
     } = this.state;
     if (fullName.length < 1) {
       this.setState({
-        message_err: "Please Inter full name !",
+        message_err: "Please enter full name !",
       });
     } else if (phone_number.length < 10) {
       this.setState({
-        message_err: "Please inter valide Phone number !",
+        message_err: "Please enter correct Phone number !",
       });
     } else if (!validatedEmail) {
       this.setState({
-        message_err: "Please inter valide email !",
+        message_err: "Please enter correct email !",
       });
     } else if (password.length < 8) {
       this.setState({
@@ -162,7 +162,7 @@ class SignUpBox extends Component {
                         <label className="label-text">Phone Number</label>
                         <div className="form-group">
                           <span className="form-icon">
-                            <FaRegEnvelope />
+                            <FiPhone />
                           </span>
                           <input
                             value={this.state.phone_number}
@@ -239,15 +239,15 @@ class SignUpBox extends Component {
                         </div>
                       )}
                       {/* <div className="form-group">
-                                        <div className="custom-checkbox d-block mr-0">
-                                            <input type="checkbox" id="chb13" />
-                                            <label htmlFor="chb13">I Agree to Dirto's <Link to="#" className="color-text">Privacy Policy</Link></label>
-                                        </div>
-                                        <div className="custom-checkbox d-block mr-0">
-                                            <input type="checkbox" id="chb14" />
-                                            <label htmlFor="chb14">I Agree to Dirto's <Link to="#" className="color-text">Terms of Services</Link></label>
-                                        </div>
-                                    </div> */}
+                              <div className="custom-checkbox d-block mr-0">
+                                  <input type="checkbox" id="chb13" />
+                                  <label htmlFor="chb13">I Agree to Dirto's <Link to="#" className="color-text">Privacy Policy</Link></label>
+                              </div>
+                              <div className="custom-checkbox d-block mr-0">
+                                  <input type="checkbox" id="chb14" />
+                                  <label htmlFor="chb14">I Agree to Dirto's <Link to="#" className="color-text">Terms of Services</Link></label>
+                              </div>
+                          </div> */}
                     </div>
                     <div className="col-lg-12">
                       <div className="btn-box margin-top-20px margin-bottom-20px">

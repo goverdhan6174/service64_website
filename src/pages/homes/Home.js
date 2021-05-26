@@ -31,7 +31,7 @@ export default class Home extends Component {
         <section className="cat-area padding-top-80 padding-bottom-80px">
           <div className="container">
             <div className="">
-              <h2 className="h_title">Most Popular Categories</h2>
+              <h2 className="h_title">A large number of professionals</h2>
               <p className="h_raw_text">
                 You can find the most trusted and hardworking people here to
                 answer your calls in the{" "}
@@ -40,8 +40,55 @@ export default class Home extends Component {
             </div>
 
             <div className="row mt-5">
-              <PopularCategories />
+
+              <div className="col-lg-6 col-sm-6 column-td-6">
+                <div className="divistionDhaka">
+                  <h3>Dhaka</h3> 
+                  <p>73 Profile</p> 
+                </div>
+                       
+              </div>
+
+              <div className="col-lg-3 col-sm-3 column-td-6">
+                <div className="chattogramDivision">
+                  <h3>Chattogram</h3> 
+                  <p>68 Profile</p> 
+                </div>                
+              </div>
+
+              <div className="col-lg-3 col-sm-3 column-td-6">
+                <div className="sylhetDivision">
+                  <h3>Sylhet</h3> 
+                  <p>55 Profile</p> 
+                </div>               
+              </div>            
             </div>
+
+            <div className="row mt-5 divisionSecond">
+
+              <div className="col-lg-4 col-sm-4 column-td-6">
+                <div className="khulnaDivision">
+                  <h3>Khulna</h3> 
+                  <p>98 Profile</p> 
+                </div>
+                       
+              </div>
+
+              <div className="col-lg-4 col-sm-4 column-td-6">
+                <div className="barishalDivision">
+                  <h3>Barishal</h3> 
+                  <p>55 Profile</p> 
+                </div>                
+              </div>
+
+              <div className="col-lg-4 col-sm-4 column-td-6">
+                <div className="rajshahiDivision">
+                  <h3>Rajshahi</h3> 
+                  <p>38 Profile</p> 
+                </div>               
+              </div>            
+            </div>
+            
           </div>
 
 
@@ -80,24 +127,7 @@ export default class Home extends Component {
             </div>
           </div>
         </section>
-        {/* Testimonial */}
-        {/* <section className="testimonial-area padding-top-100px padding-bottom-100px text-center">
-                    {this.tmimages.tmimage.map((tmimg, index) => {
-                        return (
-                            <img key={index} src={tmimg.tmimg} alt="testimonial" className="random-img" />
-                        )
-                    })}
-                    <div className="container">
-                        <div className="row section-title-width text-center">
-                            <SectionsHeading title="What Our Users Said" desc="Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortors." />
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-8 mx-auto mt-4">
-                                <Testimonial />
-                            </div>
-                        </div>
-                    </div>
-                </section> */}
+        
         <SectionDivider />
         {/* Blog */}
         {/* <section className="blog-area padding-top-100px padding-bottom-80px">

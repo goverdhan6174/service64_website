@@ -62,24 +62,16 @@ class PrivacyPolicy extends Component {
             <div className="row section-title-width text-center">
               <SectionsHeading
                 title="Privacy Policy"
-                desc="We respect the privacy of all the users, who are working or using our service."
+                desc="service64.com, we respect your privacy and are committed to protect it through our observance with this privacy policy."
               />
             </div>
 
             <div className="row mt-5">
               <h4 className="normalTextHeading">Our commitment to privacy:</h4>
               <p className="pTextForNormalPages">
-                Service64 knows that protecting your privacy and confidentiality
-                is important to you. This Privacy Policy governs the collection,
-                use and disclosure of your personal information in any form,
-                whether written or electronic, by Service64 The collection, use
-                and disclosure of your personal information is governed by the
-                Personal Information Protection and Electronic Documents Act
-                (the “Act”), and any applicable provincial legislation. This
-                Privacy Policy explains what personal information may be
-                collected from you and how it is used. It also explains how you
-                can ask questions, make suggestions, and express concerns about
-                our privacy practices.
+              Please read the policies carefully before ordering any meal or taking any services from our website, or via out mobile application. By ordering anything 
+              from our website, phone, or our mobile applications, you agree to follow our terms and conditions. This policy may change from time to time, your continued 
+              use of our services after we make changes is deemed to be acceptance of those changes, so please check the policy periodically for updates. 
               </p>
 
               <p className="pTextForNormalPages">
@@ -128,43 +120,8 @@ class PrivacyPolicy extends Component {
                 name, address, email address and telephone numbers) through
                 forms or other means of communication.
               </p>
-              <p className="normalTextHeading">
-                For our member-based web properties, such as Agent8.ca or the
-                Scott’s online portal, we will retain your subscriber ID and
-                password to allow you to login to the dashboard and so that upon
-                request by you we may remind you of them. We will also retain
-                any user setting preference you set for the dashboard so that we
-                can respect those settings.
-              </p>
-              <p className="normalTextHeading">
-                We may retain transactional information (such as purchase
-                history, a list of promotions offered to you, vouchers used,
-                contests entered and coupons ordered) in order to fulfill your
-                request for information, products or services, to respond to
-                your inquiries, and to provide a more personalized experience on
-                our Sites.
-              </p>
-              <p className="normalTextHeading">
-                We may ask you to provide and update location preferences, which
-                we use to gain a better understanding of your interests so that
-                we may improve our products and services and develop new
-                products and services and so that we can provide you with more
-                targeted offers, advertising, information and content (including
-                offers and other information that has been supplied by our
-                affiliates and selected sponsors or advertisers), including on
-                websites you visit (“Marketing Offers”). We may also collect,
-                use and store your current location or a history or location
-                preferences or settings to establish your location, improve your
-                experience and, from time to time, to send you information, such
-                as Marketing Offers, that is most relevant to your geographic
-                location. You may manage how your mobile device and mobile
-                browser share location information with us, as well as how your
-                mobile browser handles cookies and related technologies, by
-                adjusting your mobile device privacy and security settings.
-                Please refer to instructions provided by your mobile services
-                provider or the manufacturer of your device to learn how to
-                adjust your settings.
-              </p>
+              
+              
               <p className="normalTextHeading">
                 We may collect demographic information, as well as express
                 interests or category preferences, and may use this information
