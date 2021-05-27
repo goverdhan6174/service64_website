@@ -342,8 +342,8 @@ class ListingDetails extends Component {
                 </div>
 
                 <div className="section-heading profile-description mt-4 mb-4 bg-light rounded">
-                  <h4 style={{ padding: "20px 0 0 20px" }}>Share </h4>
-                  <div className="justify-content-center row col-lg-12 my-2 ">
+                <div className="justify-content-center row col-lg-12 my-2 " style={{ textAlign: 'center' }}>
+                  <h4 style={{ textAlign: 'center' , padding:  "0 0 0 20px" }}>Share </h4>
                     <FacebookShareButton
                       className="mx-auto"
                       url={this.state.shareUrl}
