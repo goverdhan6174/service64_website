@@ -32,13 +32,13 @@ class App extends Component {
         <Route>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/categories" component={AllCategories} />          
+            <Route path="/categories" component={AllCategories} />
             <Route path="/list" component={ListingGrid} />
             <Route path="/list-map-view" component={ListMapView} />
             <Route path="/list-map-view2" component={ListMapView2} />
             <Route path="/list-left-sidebar" component={ListLeftSidebar} />
             <Route path="/list-right-sidebar" component={ListRightSidebar} />
-            <Route path="/profile" component={ListingDetails} />
+            <Route path="/profile/:id" component={ListingDetails} />
             <Route path="/myprofile" component={MyProfile} />
             <Route path="/user-profile" component={UserProfile} />
             <Route path="/dashboard" component={Dashboard} />
@@ -47,7 +47,7 @@ class App extends Component {
             <Route path="/terms-conditions" component={TermsConditions} />
             <Route path="/faq" component={Faq} />
             <Route path="/contact" component={Contact} />
-            <Route path="/recover" component={RecoverPassword} />  
+            <Route path="/recover" component={RecoverPassword} />
             <Route path="/login" component={Login} />
             <Route path="/sign-up" component={SignUp} />
             <Route component={Error} />

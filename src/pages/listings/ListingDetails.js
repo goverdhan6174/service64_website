@@ -21,13 +21,26 @@ import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 import pic from "../../components/sliders/image.png";
 import { FaCentercode } from "react-icons/fa";
 import logo from "../../assets/images/favicon.png";
-
+import {
+  FacebookShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  TelegramIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from "react-share";
 import MetaDecorator from "./../../utils/metaDecorator";
 import metaData from "./../../meta/listingDetails";
 import ReviewTable, {
   ReviewStarRow,
 } from "../../components/addlisting/ReviewTable";
 import ReactPlayer from "react-player";
+import { bindActionCreators } from "redux";
+import { get_listing_usr } from "../../store/action";
+import { withRouter } from "react-router";
 
 // ProductModal.find({}).skip(Number(skip)).limit(Number(limit)).exec()
 
@@ -63,6 +76,7 @@ class ListingDetails extends Component {
         <IoMdStarHalf />,
         <IoMdStar className="last-star" />,
       ],
+      shareUrl: "https://service64.com/profile",
     };
     this.openModal = this.openModal.bind(this);
   }
@@ -70,18 +84,42 @@ class ListingDetails extends Component {
     this.setState({ isOpen: true });
   }
   componentDidMount() {
-    const details = JSON.parse(localStorage.getItem('"_ud_"'));
-    if (details !== undefined) {
-      this.setState({
-        desc: details.description,
-        title: details.fullname,
-        descTitle: details.category,
-        city: details.city,
-        seller_img: details.seller_img,
-        locations: details.locations,
-        videoUrl: details.videoUrl ? details.videoUrl : "",
-      });
-    }
+    const id = this.props.match.params.id;
+    this.getSeller(id);
+    // const details = JSON.parse(localStorage.getItem('"_ud_"'));
+    // if (details !== undefined) {
+    //   this.setState({
+    //     desc: details.description,
+    //     title: details.fullname,
+    //     descTitle: details.category,
+    //     city: details.city,
+    //     seller_img: details.seller_img,
+    //     locations: details.locations,
+    //     videoUrl: details.videoUrl ? details.videoUrl : "",
+    //   });
+    // }
+  }
+
+  getSeller(id) {
+    this.props.actions.get_listing_usr({ _id: id }).then((res) => {
+      if (res.data) {
+        let details = res.data[0];
+        if (details !== undefined) {
+          this.setState({
+            desc: details.description,
+            title: details.fullname,
+            descTitle: details.category,
+            city: details.city,
+            seller_img: details.seller_img,
+            locations: details.locations,
+            videoUrl: details.videoUrl ? details.videoUrl : "",
+            shareUrl: `https://service64.com/profile/${id}`,
+          });
+        }
+      } else {
+        console.log("REDIRECT TO 404 ");
+      }
+    });
   }
 
   getReview(stars, star_reviews) {
@@ -302,6 +340,40 @@ class ListingDetails extends Component {
                     Sunday - Thus: 9AM - 7AM
                   </p>
                 </div>
+
+                <div className="section-heading profile-description mt-4 mb-4 bg-light rounded">
+                  <h4 style={{ padding: "20px 0 0 20px" }}>Share </h4>
+                  <div className="justify-content-center row col-lg-12 my-2 ">
+                    <FacebookShareButton
+                      className="mx-auto"
+                      url={this.state.shareUrl}
+                      quote={this.state.shareTitle}
+                    >
+                      <FacebookIcon size={32} />
+                    </FacebookShareButton>
+                    <TwitterShareButton
+                      className="mx-auto"
+                      url={this.state.shareUrl}
+                      title={this.state.shareTitle}
+                    >
+                      <TwitterIcon size={32} />
+                    </TwitterShareButton>
+                    <TelegramShareButton
+                      className="mx-auto"
+                      url={this.state.shareUrl}
+                      title={this.state.shareTitle}
+                    >
+                      <TelegramIcon size={32} />
+                    </TelegramShareButton>
+                    <WhatsappShareButton
+                      className="mx-auto"
+                      url={this.state.shareUrl}
+                      title={this.state.shareTitle}
+                    >
+                      <WhatsappIcon size={32} />
+                    </WhatsappShareButton>
+                  </div>
+                </div>
               </div>
               {/*
                 <div className="col-lg-11">
@@ -319,10 +391,24 @@ class ListingDetails extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatchEvent) => {
+  return {
+    actions: bindActionCreators(
+      {
+        get_listing_usr,
+      },
+      dispatchEvent
+    ),
+  };
+};
+
 const mapStateToProps = (state) => {
   return {
     item: state.listing_details,
   };
 };
 
-export default connect(mapStateToProps, null)(ListingDetails);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ListingDetails)
+);

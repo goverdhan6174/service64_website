@@ -30,6 +30,7 @@ import {
 } from "../../store/action";
 import logo from "../../assets/images/favicon.png";
 import { bindActionCreators } from "redux";
+import { Link } from "react-router-dom";
 
 class PlaceGrid extends Component {
   constructor(props) {
@@ -555,7 +556,6 @@ class PlaceGrid extends Component {
 
   get_listing() {
     this.props.actions.get_listing().then((res) => {
-      console.log(res);
       if (res.data) {
         if (res.data.listing.length > 0) {
           this.setState({
@@ -793,6 +793,7 @@ class PlaceGrid extends Component {
   }
 
   get_listing_detailes(details) {
+    return;
     this.props.actions.listing_details(details);
     localStorage.setItem('"_ud_"', JSON.stringify(details));
     const history = this.props.history;
@@ -908,72 +909,77 @@ class PlaceGrid extends Component {
             {item.map((items, index) => {
               return (
                 <div className="col-lg-4 column-td-6" key={index}>
-                  <div className="card-item">
-                    <div
-                      onClick={this.get_listing_detailes.bind(this, items)}
-                      className="card-image-wrap"
-                      style={{ cursor: "pointer" }}
-                    >
+                  <Link to={`/profile/${items._id}`}>
+                    <div className="card-item">
                       <div
-                        className="card-image"
-                        style={{ overflow: "hidden" }}
+                        onClick={this.get_listing_detailes.bind(this, items)}
+                        className="card-image-wrap"
+                        style={{ cursor: "pointer" }}
                       >
-                        <img
-                          src={!!items.seller_img ? items.seller_img : logo}
-                          className="card__img"
-                          alt="Profile-Photo"
-                        />
-                      </div>
-                    </div>
-                    <div className="card-content-wrap">
-                      <div className="card-content">
                         <div
-                          onClick={this.get_listing_detailes.bind(this, items)}
-                          style={{ cursor: "pointer" }}
+                          className="card-image"
+                          style={{ overflow: "hidden" }}
                         >
-                          <h4 className="card-title">
-                            {items.fullname}
-                            <i> {this.state.items[0].titleIcon}</i>
-                          </h4>
-
-                          <h5 className="card-meta">
-                            Category: {items.category}
-                          </h5>
-                          {items.locations.length > 1 && (
-                            <p className="card-sub">
-                              Location:{" "}
-                              {items.city +
-                                ", " +
-                                items.locations[0] +
-                                " (" +
-                                (items.locations.length - 1) +
-                                " more) "}
-                            </p>
-                          )}
-                          {items.locations.length < 2 && (
-                            <p className="card-sub">
-                              Location: {items.city + ", " + items.locations[0]}
-                            </p>
-                          )}
+                          <img
+                            src={!!items.seller_img ? items.seller_img : logo}
+                            className="card__img"
+                            alt="Profile-Photo"
+                          />
                         </div>
-                        {/* <a href={this.state.items[0].authorUrl} className="author-img">
+                      </div>
+                      <div className="card-content-wrap">
+                        <div className="card-content">
+                          <div
+                            onClick={this.get_listing_detailes.bind(
+                              this,
+                              items
+                            )}
+                            style={{ cursor: "pointer" }}
+                          >
+                            <h4 className="card-title">
+                              {items.fullname}
+                              <i> {this.state.items[0].titleIcon}</i>
+                            </h4>
+
+                            <h5 className="card-meta">
+                              Category: {items.category}
+                            </h5>
+                            {items.locations.length > 1 && (
+                              <p className="card-sub">
+                                Location:{" "}
+                                {items.city +
+                                  ", " +
+                                  items.locations[0] +
+                                  " (" +
+                                  (items.locations.length - 1) +
+                                  " more) "}
+                              </p>
+                            )}
+                            {items.locations.length < 2 && (
+                              <p className="card-sub">
+                                Location:{" "}
+                                {items.city + ", " + items.locations[0]}
+                              </p>
+                            )}
+                          </div>
+                          {/* <a href={this.state.items[0].authorUrl} className="author-img">
                                                         <img src={this.state.items[0].author} alt="author-img" />
                                                     </a> */}
-                        <ul className="info-list padding-top-20px">
-                          {/* <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={this.state.items[0].websiteUrl}>
+                          <ul className="info-list padding-top-20px">
+                            {/* <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={this.state.items[0].websiteUrl}>
                                                             {this.state.items[0].website}
                                                         </a>
                                                         </li> */}
-                          {/* <li>
+                            {/* <li>
                                                             <span className="la d-inline-block"><FaRegCalendarCheck /></span> {this.state.items[0].date}
                                                         </li> */}
-                          <li className="info-list">
-                            {items.description.slice(0, 120)} .....
-                            {/* <p className="card-text">{}</p> */}
-                          </li>
-                        </ul>
-                      </div>
-                      {/* 
+                            <li className="info-list">
+                              {items.description.slice(0, 120)} .....
+                              {/* <p className="card-text">{}</p> */}
+                            </li>
+                          </ul>
+                        </div>
+                        {/* 
                         <div className="rating-row">
                           <div className="rating-rating">
                             {this.state.items[0].ratings.map((rating, index) => {
@@ -1007,8 +1013,9 @@ class PlaceGrid extends Component {
 
                         </div>
                         */}
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               );
             })}
