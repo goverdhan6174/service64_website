@@ -1,6 +1,13 @@
 import Select from "react-select";
 import React, { Component } from "react";
-import { BsPencil, BsPerson, BsLock } from "react-icons/bs";
+import {
+  BsPencil,
+  BsPerson,
+  BsLock,
+  BsCalendar,
+  BsShieldLock,
+  BsHouse,
+} from "react-icons/bs";
 import { FiPhone } from "react-icons/fi";
 import PhotoUploader from "../../components/addlisting/PhotoUploader";
 import { connect } from "react-redux";
@@ -27,6 +34,10 @@ class AddListing extends Component {
       categories: [],
       password: "",
       confirmpwd: "",
+      date_of_birth: "",
+      national_id: "",
+      current_address: "",
+      permanent_address: "",
       title: "Personal Information",
 
       selected_city: null,
@@ -36,6 +47,7 @@ class AddListing extends Component {
       locations: [],
 
       city: "",
+      agreed: false,
     };
   }
 
@@ -136,7 +148,26 @@ class AddListing extends Component {
       photo_name,
       password,
       confirmpwd,
+      date_of_birth,
+      national_id,
+      current_address,
+      permanent_address,
+      agreed,
     } = this.state;
+
+    let yymmdd = date_of_birth.split("-");
+    let dob = new Date(...yymmdd);
+    let dateHasError = "";
+    if (dob instanceof Date) {
+      let currentDate = new Date();
+      let diff = currentDate.getTime() - dob.getTime();
+      if (diff < 220898664000 || diff > 3155695200000) {
+        dateHasError = "Minimum age is 7 years";
+      }
+    } else {
+      dateHasError = "Invalid Date";
+    }
+
     if (saller_img === "") {
       this.setState({
         message_err: "Please upload your photo",
@@ -173,10 +204,28 @@ class AddListing extends Component {
       this.setState({
         message_err: "Please write about yourself.",
       });
-    } else if (description.length > 40 && description.length < 400) {
+    } else if (description.length < 40 || description.length > 400) {
       this.setState({
         message_err:
           "An effective overview needs to be at least 40 to 400 characters",
+      });
+    } else if (!!dateHasError) {
+      this.setState({
+        message_err: dateHasError,
+      });
+    } else if (national_id.length < 10) {
+      this.setState({
+        message_err: "Your National Id must be at least 10 characters long !",
+      });
+    } else if (current_address.length < 20) {
+      this.setState({
+        message_err:
+          "Your current address must be at least 20 characters long !",
+      });
+    } else if (permanent_address.length < 20) {
+      this.setState({
+        message_err:
+          "Your permanent address must be at least 20 characters long !",
       });
     } else if (category === "") {
       this.setState({
@@ -190,6 +239,10 @@ class AddListing extends Component {
       this.setState({
         message_err: "Please enter your working areas !",
       });
+    } else if (!agreed) {
+      this.setState({
+        message_err: "Can't Sign Up without accepting the terms and conditions",
+      });
     } else {
       const saller = {
         saller_name: saller_name,
@@ -199,9 +252,17 @@ class AddListing extends Component {
         city: city,
         location: location,
         phone_number: phone_number,
-        saller_img: saller_img,
+        saller_img,
+        // saller_img: `https://source.unsplash.com/random/300x200?sig=${Math.ceil(
+        //   Math.random() * 10000
+        // )}`,
         photo_name: photo_name,
         password: confirmpwd,
+        date_of_birth: new Date(...date_of_birth.split("-")),
+        national_id,
+        current_address,
+        permanent_address,
+        agreed,
       };
       this.setState({
         is_logedin: true,
@@ -360,6 +421,91 @@ class AddListing extends Component {
                               </div>
                             </div>
 
+                            <div className="col-lg-6">
+                              <div className="input-box">
+                                <label className="label-text">
+                                  Date Of Birth
+                                </label>
+                                <div className="form-group">
+                                  <span className="la form-icon">
+                                    <BsCalendar />
+                                  </span>
+                                  <input
+                                    value={this.state.date_of_birth}
+                                    name="date_of_birth"
+                                    onChange={this.value.bind(this)}
+                                    className="form-control"
+                                    type="date"
+                                    placeholder="Choose your birthdate"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                              <div className="input-box">
+                                <label className="label-text">
+                                  National ID
+                                </label>
+                                <div className="form-group">
+                                  <span className="la form-icon">
+                                    <BsShieldLock />
+                                  </span>
+                                  <input
+                                    className="form-control"
+                                    value={this.state.national_id}
+                                    name="national_id"
+                                    onChange={this.value.bind(this)}
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Enter your National Id"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                              <div className="input-box">
+                                <label className="label-text">
+                                  Current Address
+                                </label>
+                                <div className="form-group">
+                                  <span className="la form-icon">
+                                    <BsHouse />
+                                  </span>
+                                  <textarea
+                                    className="message-control form-control"
+                                    name="current_address"
+                                    value={this.state.current_address}
+                                    onChange={this.value.bind(this)}
+                                    placeholder="Write your current address"
+                                    style={{ height: "auto" }}
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                              <div className="input-box">
+                                <label className="label-text">
+                                  Permanent Address
+                                </label>
+                                <div className="form-group">
+                                  <span className="la form-icon">
+                                    <BsHouse />
+                                  </span>
+                                  <textarea
+                                    className="message-control form-control"
+                                    name="permanent_address"
+                                    value={this.state.permanent_address}
+                                    onChange={this.value.bind(this)}
+                                    placeholder="Write your permanent address"
+                                    style={{ height: "auto" }}
+                                  ></textarea>
+                                </div>
+                              </div>
+                            </div>
+
                             <div className="col-lg-12">
                               <div className="input-box">
                                 <label className="label-text">
@@ -379,6 +525,8 @@ class AddListing extends Component {
                                 </div>
                               </div>
                             </div>
+
+
                           </div>
                         </form>
                       </div>
@@ -446,6 +594,41 @@ class AddListing extends Component {
                         </form>
                       </div>
                     </div>
+                  </div>
+
+                  <div
+                    class="billing-content"
+                    style={{ paddingTop: 0, paddingBottom: "5px" }}
+                  >
+                    <form method="post">
+                      <div className="">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="agreed"
+                          id="agreed"
+                          value={this.state.agreed}
+                          onChange={(e) =>
+                            this.setState({
+                              agreed: !this.state.agreed,
+                            })
+                          }
+                        />
+                        <label class="form-check-label" for="agreed">
+                          Agree with the{" "}
+                        </label>
+                        <a
+                          target="_blank"
+                          href="https://service64.com/terms-conditions"
+                          style={{
+                            color: "#15b7c9",
+                          }}
+                        >
+                          {" "}
+                          terms and conditions
+                        </a>
+                      </div>
+                    </form>
                   </div>
 
                   {this.state.message_err && (

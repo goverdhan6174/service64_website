@@ -68,7 +68,7 @@ export default function HeaderAuthorAccess(props) {
               </Link>
               <span className="or-text">or</span>
               <Link to="/sign-up" className="signlink">
-                Sign up
+                Become a service provider
               </Link>
             </li>
           )}

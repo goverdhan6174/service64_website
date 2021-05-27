@@ -62,64 +62,32 @@ class TermsConditions extends Component {
           <div className="container">
             <div className="row section-title-width text-center">
               <SectionsHeading
-                title="Terms and conditions"
-                desc="We are group of small team members trying to reach our goal"
+                title="Terms and conditions"                
               />
             </div>
 
-            <div className="row mt-5">
+            <div className="row mt-5 " >
+              <h4>Terms & Conditions</h4>
               <p className="pTextForNormalPages">
-                You (and also any third party for whom you operate an account or
-                activity on the Service) agree to defend (at Service64'
-                request), indemnify and hold the Service64 Parties harmless from
-                and against any claims, liabilities, damages, losses, and
-                expenses, including without limitation, reasonable attorney's
-                fees and costs, arising out of or in any way connected with any
-                of the following (including as a result of your direct
-                activities on the Service or those conducted on your behalf):
-                (i) your Content or your access to or use of the Service; (ii)
-                your breach or alleged breach of these Terms of Use; (iii) your
-                violation of any third-party right, including without
-                limitation, any intellectual property right, publicity,
-                confidentiality, property or privacy right; (iv) your violation
-                of any laws, rules, regulations, codes, statutes, ordinances or
-                orders of any governmental and quasi-governmental authorities,
-                including, without limitation, all regulatory, administrative
-                and legislative authorities; or (v) any misrepresentation made
-                by you. You will cooperate as fully required by Service64 in the
-                defense of any claim. Service64 reserves the right to assume the
-                exclusive defense and control of any matter subject to
-                indemnification by you, and you will not in any event settle any
-                claim without the prior written consent of Service64.
+              service64.com is a service provided by Saltside Technologies AB (subject to your compliance with the Terms and Conditions set forth below). Please read these Terms and Conditions before using this Web Site.
               </p>
 
-              <p className="pTextForNormalPages">
-                This Agreement (including all documents incorporated by
-                reference) is the entire agreement between the parties for its
-                subject matter and supersedes all prior and contemporaneous
-                communications between the parties. If you are using the Service
-                on behalf of a legal entity, you represent that you are
-                authorized to enter into an agreement on behalf of that legal
-                entity. These Terms of Use constitute the entire agreement
-                between you and Service64 and governs your use of the Service,
-                superseding any prior agreements between you and Service64. You
-                will not assign the Terms of Use or assign any rights or
-                delegate any obligations hereunder, in whole or in part, whether
-                voluntarily or by operation of law, without the prior written
-                consent of Service64. Any purported assignment or delegation by
-                you without the appropriate prior written consent of Service64
-                will be null and void. Service64 may assign these Terms of Use
-                or any rights hereunder without your consent. If any provision
-                of these Terms of Use is found by a court of competent
-                jurisdiction to be invalid or otherwise unenforceable, the
-                parties nevertheless agree that such portion will be deemed
-                severable from these Terms of Use and will not affect the
-                validity and enforceability of the remaining provisions, he
-                remaining provisions of the Terms of Use remain in full force
-                and effect. Neither the course of conduct between the parties
-                nor trade practice will act to modify the Terms of Use. These
-                Terms of Use do not confer any third-party beneficiary rights.
-              </p>
+              <h4>General</h4>
+              <ol className="termsConditons">
+                <li>Service64.com is an online-based marketplace, where the market has the authority to share your contact number with its users to contact you for their needs. </li>
+                <li>All the users we share our contact number is not our registered users or buyer so you need to be careful about your job.</li>
+                <li>By accepting the terms and conditions you agree with the conditions that you will be responsible for any kind of unwanted or criminal activities. </li>
+                <li>By accepting the terms and conditions you agree with the conditions that you will be responsible for any kind of unwanted or criminal activities. </li>
+                <li>Use of the Product is available only to individuals who are at least 18 years old and can form legally binding contracts under applicable law. You represent, acknowledge, and agree that you are at least 18 years of age.</li>
+                <li>You will not copy or distribute any part of the Website, Apps, or its product in any medium without service64.com</li>
+                <li>You will not alter or modify any part of the Website, Apps, or its product other than as may be reasonably necessary to use the Website, Apps, or its product for its intended purpose.</li>
+                <li>You will provide true, accurate, current, and complete information when creating your Account and you shall maintain and update such information during the term of this Agreement so that it will remain accurate, true, current, and complete.</li>
+                <li>You shall not use any automated system, including but not limited to, "robots," "spiders," "offline readers," "scrapers," etc., to access the Website for any purpose without service64.com prior written approval.</li>
+                <li>You shall not in any manual or automated manner collect SERVICE PROVIDERs or SERVICE USERs information, including but not limited to, names, addresses, phone numbers, or email addresses, copying copyrighted text, or otherwise misuse or misappropriate Website information or content, including but not limited to, use on a "mirrored", competitive, or third-party site.</li>
+                <li>You shall not take any action that (i) unreasonably encumbers or, in service64.com sole discretion, may unreasonably encumber the Product's infrastructure; (ii) interferes or attempts to interfere with the proper working of the Product or any third-party participation in the Product; or (iii) bypasses service64.com</li>
+                <li>You agree not to collect or harvest any personally identifiable data, including without limitation, names or other Account information, from the Website, nor to use the communication systems provided by the Website for any commercial solicitation purposes.</li>
+
+              </ol>
             </div>
           </div>
         </section>

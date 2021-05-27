@@ -20,7 +20,7 @@ export default class GeneralHeader extends Component {
   }
 
   state = {
-    logo: require("../../assets/images/Service64-Logo-white.png"),
+    logo: require("../../assets/images/Service64_logo-dark.svg"),
     scrollTop: false,
   };
 

@@ -78,14 +78,8 @@ function Navbar(props) {
             </li>
 
             <li>
-              <Link to="/about-us" className="aboutlink">
-                about us
-              </Link>
-            </li>
-
-            <li>
               <Link to="/categories" className="categorieslink">
-                categories{" "}
+                All services{" "}
               </Link>
             </li>
 
@@ -97,7 +91,7 @@ function Navbar(props) {
                 }}
                 className="listlink"
               >
-                Number List
+                Contact numbers
               </Link>
             </li>
 
@@ -133,15 +127,9 @@ function Navbar(props) {
               </Link>
             </li>
 
-            <li className="active">
-              <Link to="/about-us" className="aboutlink">
-                about us
-              </Link>
-            </li>
-
             <li>
               <Link to="/categories" className="categorieslink">
-                categories{" "}
+                all categories{" "}
               </Link>
             </li>
             <li>
@@ -152,7 +140,7 @@ function Navbar(props) {
                 }}
                 className="listlink"
               >
-                Number List
+                Phone number
               </Link>
             </li>
 

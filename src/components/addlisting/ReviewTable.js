@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdStar, IoMdStarHalf, IoMdStarOutline } from "react-icons/io";
 import { add_review, get_reviews, report_review } from "../../store/action";
-import logo from "../../assets/images/favicon.png";
+import logo from "../../assets/images/reviewerImg.svg";
 
 export default function ReviewTable({
   getReview,
@@ -402,7 +402,7 @@ function UserReview({ currentUser, review, totalStars, isOnProfile }) {
             <div className="review-block-name">
               <a href="#">{review.reviewer_name}</a>
             </div>
-            {/* <div className="review-block-date">{date.current}</div> */}
+            <div className="review-block-date">{date.current}</div>
             <div
               className="review-block-rate"
               style={{ maxWidth: "250px", marginLeft: "-7px" }}
@@ -811,7 +811,7 @@ export function ReviewStarRow({
   totalStars = 5,
   clickHandler = null,
   size = 25,
-  color = "#63c5da",
+  color = "#FFD700",
 }) {
   let [starsArray, setStarsArray] = React.useState([]);
 
